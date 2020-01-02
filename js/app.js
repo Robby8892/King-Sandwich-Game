@@ -44,10 +44,12 @@ class Player {
 // this will house all of the information about the game while also containing the results
 // of each round and maintaing all of the images that will be used 
 // there will be created divs that handle images 
+$('#recipe-form').hide()
+
 
 
 const theSandwichGame = {
-	typeOfSandwich: ['pbjj','blt','other'],
+	typeOfSandwich: ['pb&j&j','blt','other'],
 	theSandwich: null,
 	ingredients: false,
 	typeOfIngredients: null,
@@ -59,15 +61,13 @@ const theSandwichGame = {
 
 		const randomSandwich = Math.floor(Math.random() * this.typeOfSandwich.length)
 
-		// this.theSandwich = this.typeOfSandwich[randomSandwich]
+		this.theSandwich = this.typeOfSandwich[randomSandwich]
 
 		this.typeOfIngredients = new Sandwich()
 
-		this.chooseSandwich()
+		// this.chooseSandwich()
 
-		this.theIngredients()
-
-		console.log("Your sandwich is " + this.theSandwich );
+		// this.theIngredients()
 
 		const list = this.typeOfIngredients.ingredient1 + " " + this.typeOfIngredients.ingredient2 + " " + this.typeOfIngredients.ingredient3
 
@@ -87,7 +87,7 @@ const theSandwichGame = {
 			this.printSandwich()
 		}	
 
-		else if(this.theSandwich === "pbjj" && this.ingredients === true){
+		else if(this.theSandwich === "pb&j&j" && this.ingredients === true){
 			this.typeOfIngredients.bread = true
 			this.typeOfIngredients.ingredient1 = 'peanutbutter'
 			this.typeOfIngredients.ingredient2 = 'jelly'
@@ -120,19 +120,32 @@ const theSandwichGame = {
 
 		this.name = userInput.value
 
-		$('#user-form').fadeOut()
+		$('#user-form').fadeOut(1000)
 
-		const input = prompt('Pick! (0/1)')
-		if(input === '0'){
-			this.choices = 0
-		}if(input === '1'){
-			this.choices = 1
-		}
-	
+		//welcome user to the game, and give them instructions 
+
+		$('<p class="messages"></p>').text("Welcome " + this.name +  " to the Your Royal Sandwich Game").appendTo($('#game-dialouge')).fadeOut(3000)
+
+		$('<p class="messages"></p>').text('You have been tasked with provding his Royal Highness a sandwich of his very desire!').appendTo($('#game-dialouge')).fadeOut(5000)
+
+		$("<p class='messages'></p>").text('Provide me with the correct recipe or face dire concequences!').appendTo($('#game-dialouge')).fadeOut(8000)
+
+
 		this.generateSandwich()
-		alert('Your sandwich is ' + this.theSandwich)
 
-		this.test2()
+		$("<p class='messages'></p>").text('What are the ingredients for a ' + this.theSandwich).appendTo($('#game-dialouge')).fadeOut(10000)
+
+		// const input = prompt('Pick! (0/1)')
+		// if(input === '0'){
+		// 	this.choices = 0
+		// }if(input === '1'){
+		// 	this.choices = 1
+		// }
+	
+		// this.generateSandwich()
+		// alert('Your sandwich is ' + this.theSandwich)
+
+		// this.test2()
 	},
 
 	test2() {
@@ -149,7 +162,7 @@ const theSandwichGame = {
 	},
 	printSandwich() {
 
-		if(this.theSandwich === 'pbjj'){
+		if(this.theSandwich === 'pb&j&j'){
 
 			$('<img src= "https://3.bp.blogspot.com/-EP5vkZI0XOw/WKgW0TUL_nI/AAAAAAAAAFY/qE81GkJAjCQGzkwDx1DNcx-tX6WUX4bLgCLcB/s1600/pb%2526j_Logo_V2-2.jpg">').css('color', 'blue').appendTo($('body'))
 
@@ -172,19 +185,26 @@ const theSandwichGame = {
 
 
 $('#user-form').on('submit', (e) => {
+	
 	e.preventDefault()
 
 	const input = $('#user-input')
 
 	const userInput = input[0]
 
-	console.log(userInput.value);
-
 	theSandwichGame.test(userInput)
 
 })
 
+$('recipe-form').on('submit', (e) => {
 
+	const input = $('#recipe-input')
+
+	const secondUserInput = input[0]
+
+
+
+})
 
 
 
