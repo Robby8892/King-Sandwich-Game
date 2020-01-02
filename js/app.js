@@ -43,6 +43,7 @@ const theSandwichGame = {
 	ingredients: false,
 	typeOfIngredients: null,
 	choices: null,
+	correct: false,
 
 	generateSandwich(){
 
@@ -60,7 +61,7 @@ const theSandwichGame = {
 
 		const list = this.typeOfIngredients.ingredient1 + " " + this.typeOfIngredients.ingredient2 + " " + this.typeOfIngredients.ingredient3
 
-		console.log("It has " + list);
+		// console.log("It has " + list);
 
 
 
@@ -77,7 +78,7 @@ const theSandwichGame = {
 
 		else if(this.theSandwich === "pbjj" && this.ingredients === true){
 			this.typeOfIngredients.bread = true
-			this.typeOfIngredients.ingredient1 = 'peanut-butter'
+			this.typeOfIngredients.ingredient1 = 'peanutbutter'
 			this.typeOfIngredients.ingredient2 = 'jelly'
 			this.typeOfIngredients.ingredient3 = 'jam'
 			
@@ -113,8 +114,20 @@ const theSandwichGame = {
 		}
 	
 		this.generateSandwich()
-	}
+		alert('Your sandwich is ' + this.theSandwich)
+		this.test2()
+	},
 
+	test2() {
+		const input = prompt("What is one the of the ingredients?")
+		if(input === this.typeOfIngredients.ingredient1 || input === this.typeOfIngredients.ingredient2 || input === this.typeOfIngredients.ingredient3){
+			this.correct = true
+			console.log('that\'s right');
+		}
+		if(input !== this.typeOfIngredients.ingredient1 || input === this.typeOfIngredients.ingredient2 || input === this.typeOfIngredients.ingredient3){
+			console.log('that\'s not right' );
+		}
+	}
 
 }
 
