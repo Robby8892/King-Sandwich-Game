@@ -101,7 +101,21 @@ const theSandwichGame = {
 			this.theSandwich = this.typeOfSandwich[this.choices]
 		}
 
+	},
+
+	test(){
+
+		const input = prompt('Pick! (0/1)')
+		if(input === '0'){
+			this.choices = 0
+		}if(input === '1'){
+			this.choices = 1
+		}
+	
+		this.generateSandwich()
 	}
+
+
 }
 
 
@@ -110,7 +124,7 @@ const theSandwichGame = {
 
 
 
-
+theSandwichGame.test()
 
 
 
