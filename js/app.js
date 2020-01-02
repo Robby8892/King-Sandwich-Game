@@ -119,12 +119,13 @@ const theSandwichGame = {
 	},
 
 	test2() {
+
 		const input = prompt("What is one the of the ingredients?")
 		if(input === this.typeOfIngredients.ingredient1 || input === this.typeOfIngredients.ingredient2 || input === this.typeOfIngredients.ingredient3){
 			this.correct = true
 			console.log('that\'s right');
 		}
-		if(input !== this.typeOfIngredients.ingredient1 || input === this.typeOfIngredients.ingredient2 || input === this.typeOfIngredients.ingredient3){
+		else if(input !== this.typeOfIngredients.ingredient1 || input !== this.typeOfIngredients.ingredient2 || input !== this.typeOfIngredients.ingredient3){
 			console.log('that\'s not right' );
 		}
 	}
