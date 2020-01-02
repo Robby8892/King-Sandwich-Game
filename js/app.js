@@ -28,6 +28,15 @@ class Recipe {
 	}
 }
 
+class Player {
+	constructor(name, name2){
+
+		this.name = this.name
+		this.name2 = this.name2
+
+	}
+
+}
 
 
 
@@ -44,6 +53,7 @@ const theSandwichGame = {
 	typeOfIngredients: null,
 	choices: null,
 	correct: false,
+	name: null, 
 
 	generateSandwich(){
 
@@ -106,7 +116,11 @@ const theSandwichGame = {
 
 	},
 
-	test(){
+	test(userInput){
+
+		this.name = userInput.value
+
+		$('#user-form').fadeOut()
 
 		const input = prompt('Pick! (0/1)')
 		if(input === '0'){
@@ -137,11 +151,17 @@ const theSandwichGame = {
 
 		if(this.theSandwich === 'pbjj'){
 
-			$('<img src= "https://3.bp.blogspot.com/-EP5vkZI0XOw/WKgW0TUL_nI/AAAAAAAAAFY/qE81GkJAjCQGzkwDx1DNcx-tX6WUX4bLgCLcB/s1600/pb%2526j_Logo_V2-2.jpg">').appendTo($('body'))
+			$('<img src= "https://3.bp.blogspot.com/-EP5vkZI0XOw/WKgW0TUL_nI/AAAAAAAAAFY/qE81GkJAjCQGzkwDx1DNcx-tX6WUX4bLgCLcB/s1600/pb%2526j_Logo_V2-2.jpg">').css('color', 'blue').appendTo($('body'))
 
 		}
 		if(this.theSandwich === 'blt'){
-			$('<img src= "https://static01.nyt.com/images/2019/08/28/dining/27Diaryrex4/27Diaryrex4-articleLarge.jpg">').appendTo($('body'))
+			$('<img src= "https://cdn.apps.joltteam.com/brikbuild/sandwich-pixel-art-8bit-bread-brik-bin-finger-food-food-pixel-pixel-art-sandwich-5a24f9b6f6c96a8d2972098a.brickImg.jpg">').css
+			({'height': '150px',
+			  'margin-top': '250px',
+			  'background-color': 'blue' 
+			}).appendTo($('#blt'))
+
+
 		
 		}else {
 			$('<img src= "">')
@@ -151,7 +171,18 @@ const theSandwichGame = {
 }
 
 
+$('#user-form').on('submit', (e) => {
+	e.preventDefault()
 
+	const input = $('#user-input')
+
+	const userInput = input[0]
+
+	console.log(userInput.value);
+
+	theSandwichGame.test(userInput)
+
+})
 
 
 
