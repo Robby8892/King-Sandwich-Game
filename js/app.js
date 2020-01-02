@@ -74,13 +74,15 @@ const theSandwichGame = {
 			this.typeOfIngredients.ingredient1 = 'bacon'
 			this.typeOfIngredients.ingredient2 = 'lettuce'
 			this.typeOfIngredients.ingredient3 = 'tomato'	
-		}
+			this.printSandwich()
+		}	
 
 		else if(this.theSandwich === "pbjj" && this.ingredients === true){
 			this.typeOfIngredients.bread = true
 			this.typeOfIngredients.ingredient1 = 'peanutbutter'
 			this.typeOfIngredients.ingredient2 = 'jelly'
 			this.typeOfIngredients.ingredient3 = 'jam'
+			this.printSandwich()
 			
 	}	else {
 		this.theSandwich = "Is not a sandwich"
@@ -115,6 +117,7 @@ const theSandwichGame = {
 	
 		this.generateSandwich()
 		alert('Your sandwich is ' + this.theSandwich)
+
 		this.test2()
 	},
 
@@ -126,9 +129,24 @@ const theSandwichGame = {
 			console.log('that\'s right');
 		}
 		else if(input !== this.typeOfIngredients.ingredient1 || input !== this.typeOfIngredients.ingredient2 || input !== this.typeOfIngredients.ingredient3){
-			console.log('that\'s not right' );
+			alert('that\'s not right' );
+			this.test2()
 		}
-	}
+	},
+	printSandwich() {
+
+		if(this.theSandwich === 'pbjj'){
+
+			$('<img src= "https://3.bp.blogspot.com/-EP5vkZI0XOw/WKgW0TUL_nI/AAAAAAAAAFY/qE81GkJAjCQGzkwDx1DNcx-tX6WUX4bLgCLcB/s1600/pb%2526j_Logo_V2-2.jpg">').appendTo($('body'))
+
+		}
+		if(this.theSandwich === 'blt'){
+			$('<img src= "https://static01.nyt.com/images/2019/08/28/dining/27Diaryrex4/27Diaryrex4-articleLarge.jpg">').appendTo($('body'))
+		
+		}else {
+			$('<img src= "">')
+		}
+	}	
 
 }
 
@@ -138,7 +156,7 @@ const theSandwichGame = {
 
 
 
-theSandwichGame.test()
+
 
 
 
