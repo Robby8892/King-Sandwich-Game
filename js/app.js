@@ -22,10 +22,19 @@ class Sandwich {
 
 
 class Recipe {
-	constructor(ingredient){
+	constructor(ingredient, click, bacon, lettuce, tomato){
 
 		this.ingredient = true
+		this.click = false
+
 	}
+	wasClicked() {
+
+		this.click = true
+
+	}
+
+
 }
 
 class Player {
@@ -44,18 +53,20 @@ class Player {
 // this will house all of the information about the game while also containing the results
 // of each round and maintaing all of the images that will be used 
 // there will be created divs that handle images 
-$('#recipe-form').hide()
 
 
 
 const theSandwichGame = {
 	typeOfSandwich: ['pb&j&j','blt'],
 	theSandwich: null,
-	ingredients: false,
+	ingredients: [],
 	typeOfIngredients: null,
-	choices: null,
+	// choices: null,
 	correct: false,
 	name: null, 
+	timer: 30,
+	round: 0,
+	score: 0, 
 
 	generateSandwich(){
 
@@ -67,39 +78,41 @@ const theSandwichGame = {
 
 		// this.chooseSandwich()
 
-		// this.theIngredients()
+		this.theIngredients()
+
+		console.log(this.typeOfIngredients.ingredient1);
 
 		const list = this.typeOfIngredients.ingredient1 + " " + this.typeOfIngredients.ingredient2 + " " + this.typeOfIngredients.ingredient3
 
-		// console.log("It has " + list);
-
+		// console.log("It ha
 
 
 	},
 	theIngredients(){
 
-		if(this.theSandwich === "blt" && this.ingredients === true){
+		if(this.theSandwich === "blt"){
 
 			this.typeOfIngredients.bread = true
 			this.typeOfIngredients.ingredient1 = 'bacon'
 			this.typeOfIngredients.ingredient2 = 'lettuce'
 			this.typeOfIngredients.ingredient3 = 'tomato'	
-			this.printSandwich()
+			
 		}	
 
-		else if(this.theSandwich === "pb&j&j" && this.ingredients === true){
+		else if(this.theSandwich === "pb&j&j"){
 			this.typeOfIngredients.bread = true
 			this.typeOfIngredients.ingredient1 = 'peanutbutter'
 			this.typeOfIngredients.ingredient2 = 'jelly'
 			this.typeOfIngredients.ingredient3 = 'jam'
-			this.printSandwich()
 			
-	}	else {
-		this.theSandwich = "Is not a sandwich"
-		this.typeOfIngredients.ingredient1 = 'nothing'
-		this.typeOfIngredients.ingredient2 = 'more nothing'
-		this.typeOfIngredients.ingredient3 = 'extra nothing'
-		}
+			
+	}	
+	// else {
+	// 	this.theSandwich = "Is not a sandwich"
+	// 	this.typeOfIngredients.ingredient1 = 'nothing'
+	// 	this.typeOfIngredients.ingredient2 = 'more nothing'
+	// 	this.typeOfIngredients.ingredient3 = 'extra nothing'
+	// 	}
 	},
 	chooseSandwich() {
 		if(this.choices === 0){
@@ -120,7 +133,7 @@ const theSandwichGame = {
 
 		this.name = userInput.value
 
-		$('#user-form').fadeOut(100)
+		$('#user-form').remove()
 
 		//welcome user to the game, and give them instructions 
 
@@ -145,18 +158,32 @@ const theSandwichGame = {
 		// this.generateSandwich()
 		// alert('Your sandwich is ' + this.theSandwich)
 
-		this.test2()
+
+		// $('<form id="recipe-form"></form>').appendTo($('#game-dialouge'))
+		// $('<input id="recipe-input" placeholder="Ingredients"></input>').appendTo($('#recipe-form'))
+		// $('<button id="recipe-button">Enter</button>').appendTo($('#recipe-form'))
+
+		this.printIngredients()
+
+		this.testListen()
 
 
 	},
 
-	test2(secondUserInput) {
+	test2(userInput) {
 
-		$('<form id="recipe-form"></form>').appendTo($('#game-dialouge')).fadeIn(10000)
-		$('<input id="recipe-input" placeholder="Ingredients"></input>').appendTo($('#recipe-form')).fadeIn(10000)
-		$('<button id="recipe-button">Enter</button>').appendTo($('#recipe-form')).fadeIn(10000)
 
-		if(secondUserInput === this.typeOfIngredients.ingredient1)
+
+
+		if(userInput ===  hasClass('ingredients') || userInput === hasClass('ingredients') || userInput === hasClass('ingredients')){
+
+		$("<p class='messages'></p>").text("Good job that is a correct ingredient for a " + this.theSandwich).appendTo('#game-dialouge')
+
+		this.printSandwich()
+
+		// $('#recipe-form').remove()
+
+	}
 
 
 
@@ -168,32 +195,88 @@ const theSandwichGame = {
 		// else if(input !== this.typeOfIngredients.ingredient1 || input !== this.typeOfIngredients.ingredient2 || input !== this.typeOfIngredients.ingredient3){
 		// 	alert('that\'s not right' );
 		// 	this.test2()
-		
-
+			
+		// https://cdn.apps.joltteam.com/brikbuild/sandwich-pixel-art-8bit-bread-brik-bin-finger-food-food-pixel-pixel-art-sandwich-5a24f9b6f6c96a8d2972098a.brickImg.jpg
 	},
 	printSandwich() {
 
-		if(this.theSandwich === 'pb&j&j'){
+		if(this.theSandwich === 'pb&j&j') {
 
-			$('<img src= "https://3.bp.blogspot.com/-EP5vkZI0XOw/WKgW0TUL_nI/AAAAAAAAAFY/qE81GkJAjCQGzkwDx1DNcx-tX6WUX4bLgCLcB/s1600/pb%2526j_Logo_V2-2.jpg">').css('color', 'blue').appendTo($('body'))
+			$('<img src= "photo/pbj.png">').css({
+				'height': '150px',
+				'margin-top': '250px'
+			}).appendTo($('#sandwich'))
 
 		}
-		if(this.theSandwich === 'blt'){
-			$('<img src= "https://cdn.apps.joltteam.com/brikbuild/sandwich-pixel-art-8bit-bread-brik-bin-finger-food-food-pixel-pixel-art-sandwich-5a24f9b6f6c96a8d2972098a.brickImg.jpg">').css
-			({'height': '150px',
-			  'margin-top': '250px',
-			  'background-color': 'blue' 
-			}).appendTo($('#blt'))
 
-
+		if(this.theSandwich === 'blt') {
+			$('<img src= "photo/blt.png">').css({
+			  'height': '150px',
+			  'margin-top': '250px' 
+			}).appendTo($('#sandwich'))
 		
-		}else {
+		} else {
 			$('<img src= "">')
 		}
-	}	
+	},
 
+	testListen() {
+
+		$('#ingredients-container').on('click', (e) => {
+
+			// e.preventDefault()
+
+			// const input = $('#recipe-input')
+
+			// console.log(input);
+
+			// const userInput = input[0]
+
+			const userInput = e.target
+
+			console.log(userInput);
+
+			theSandwichGame.test2(userInput)
+
+		})
+	},
+	printIngredients() {
+
+
+		const bacon = new Recipe()
+		const lettuce = new Recipe()
+		const tomato = new Recipe()
+
+		this.ingredients.push(bacon)
+		this.ingredients.push(lettuce)
+		this.ingredients.push(tomato)
+
+
+		// $('#ingredients-container').text(this.ingredients[0])
+
+		if(this.theSandwich === 'blt'){
+
+			this.createIngredients()
+
+			$('<img class="ingredients" src="photo/bacon.png" >').appendTo('#bacon').css('width', '40%').attr('data-which-ingredient', 'bacon')
+			$('<img class="ingredients" src="photo/lettuce.png" >').appendTo('#lettuce').attr('data-which-ingredient', 'lettuce').text('lettuce')
+			$('<img class="ingredients" src="photo/tomato.png" >').appendTo('#tomato').attr('data-which-ingredient', 'tomato')
+
+
+
+		}
+
+	},
+	createIngredients() {
+
+
+
+		$('<div> <div>').text(this.typeOfIngredients.ingredient1).attr('id', this.typeOfIngredients.ingredient1).appendTo('#ingredients-container')
+		$('<div> <div>').text(this.typeOfIngredients.ingredient2).attr('id', this.typeOfIngredients.ingredient2).appendTo('#ingredients-container')
+		$('<div> <div>').text(this.typeOfIngredients.ingredient3).attr('id', this.typeOfIngredients.ingredient3).appendTo('#ingredients-container')
 }
 
+}
 
 $('#user-form').on('submit', (e) => {
 	
@@ -204,18 +287,6 @@ $('#user-form').on('submit', (e) => {
 	const userInput = input[0]
 
 	theSandwichGame.test(userInput)
-
-})
-
-$('recipe-form').on('submit', (e) => {
-
-	const input = $('#recipe-input')
-
-	const secondUserInput = input[0]
-
-	theSandwichGame.test2(secondUserInput)
-
-
 
 })
 

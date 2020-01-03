@@ -17,6 +17,18 @@ html{
 	justify-content: center;
 }
 
+#sandwich {
+	display: flex;
+	align-content: center;
+	justify-content: center;
+}
+
+#ingredients-container {
+	display: flex;
+	align-content: center;
+	justify-content: center;
+}
+
 .messages{
 	text-align: center;
 	font-family: 'Press Start 2P', cursive;
@@ -29,6 +41,27 @@ html{
 	margin: .2em;
 
 }
+
+.ingredients {
+	height: 100px;
+	margin-top: 200px;
+}
+
+
+#bacon {
+	margin-left: 5px;
+}
+
+#lettuce {
+	margin-left: 5px;
+}
+
+#tomato {
+	margin-left: 5px;
+
+}
+
+
 
 h1{
 	text-align: center;
