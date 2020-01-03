@@ -11,10 +11,16 @@ html{
 	justify-content: center;
 }
 
+#recipe-form{
+	display: flex;
+	align-content: center;
+	justify-content: center;
+}
 
 .messages{
 	text-align: center;
 	font-family: 'Press Start 2P', cursive;
+	font-weight: 900;
 }
 
 

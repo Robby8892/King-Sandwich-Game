@@ -49,7 +49,7 @@ $('#recipe-form').hide()
 
 
 const theSandwichGame = {
-	typeOfSandwich: ['pb&j&j','blt','other'],
+	typeOfSandwich: ['pb&j&j','blt'],
 	theSandwich: null,
 	ingredients: false,
 	typeOfIngredients: null,
@@ -120,20 +120,20 @@ const theSandwichGame = {
 
 		this.name = userInput.value
 
-		$('#user-form').fadeOut(1000)
+		$('#user-form').fadeOut(100)
 
 		//welcome user to the game, and give them instructions 
 
-		$('<p class="messages"></p>').text("Welcome " + this.name +  " to the Your Royal Sandwich Game").appendTo($('#game-dialouge')).fadeOut(3000)
+		$('<p class="messages"></p>').text("Welcome " + this.name +  " to the Your Royal Sandwich Game").appendTo($('#game-dialouge')).fadeOut(8800)
 
-		$('<p class="messages"></p>').text('You have been tasked with provding his Royal Highness a sandwich of his very desire!').appendTo($('#game-dialouge')).fadeOut(5000)
+		$('<p class="messages"></p>').text('You have been tasked with provding his Royal Highness a sandwich of his very desire!').appendTo($('#game-dialouge')).fadeOut(9000)
 
-		$("<p class='messages'></p>").text('Provide me with the correct recipe or face dire concequences!').appendTo($('#game-dialouge')).fadeOut(8000)
+		$("<p class='messages'></p>").text('Provide me with the correct recipe or face dire concequences!').appendTo($('#game-dialouge')).fadeOut(10000)
 
 
 		this.generateSandwich()
 
-		$("<p class='messages'></p>").text('What are the ingredients for a ' + this.theSandwich).appendTo($('#game-dialouge')).fadeOut(10000)
+		$("<p class='messages'></p>").text('What are the ingredients for a ' + this.theSandwich + " !").appendTo($('#game-dialouge')).fadeOut(11000)
 
 		// const input = prompt('Pick! (0/1)')
 		// if(input === '0'){
@@ -145,20 +145,31 @@ const theSandwichGame = {
 		// this.generateSandwich()
 		// alert('Your sandwich is ' + this.theSandwich)
 
-		// this.test2()
+		this.test2()
+
+
 	},
 
-	test2() {
+	test2(secondUserInput) {
 
-		const input = prompt("What is one the of the ingredients?")
-		if(input === this.typeOfIngredients.ingredient1 || input === this.typeOfIngredients.ingredient2 || input === this.typeOfIngredients.ingredient3){
-			this.correct = true
-			console.log('that\'s right');
-		}
-		else if(input !== this.typeOfIngredients.ingredient1 || input !== this.typeOfIngredients.ingredient2 || input !== this.typeOfIngredients.ingredient3){
-			alert('that\'s not right' );
-			this.test2()
-		}
+		$('<form id="recipe-form"></form>').appendTo($('#game-dialouge')).fadeIn(10000)
+		$('<input id="recipe-input" placeholder="Ingredients"></input>').appendTo($('#recipe-form')).fadeIn(10000)
+		$('<button id="recipe-button">Enter</button>').appendTo($('#recipe-form')).fadeIn(10000)
+
+		if(secondUserInput === this.typeOfIngredients.ingredient1)
+
+
+
+		// const input = prompt("What is one the of the ingredients?")
+		// if(input === this.typeOfIngredients.ingredient1 || input === this.typeOfIngredients.ingredient2 || input === this.typeOfIngredients.ingredient3){
+		// 	this.correct = true
+		// 	console.log('that\'s right');
+		// }
+		// else if(input !== this.typeOfIngredients.ingredient1 || input !== this.typeOfIngredients.ingredient2 || input !== this.typeOfIngredients.ingredient3){
+		// 	alert('that\'s not right' );
+		// 	this.test2()
+		
+
 	},
 	printSandwich() {
 
@@ -201,6 +212,8 @@ $('recipe-form').on('submit', (e) => {
 	const input = $('#recipe-input')
 
 	const secondUserInput = input[0]
+
+	theSandwichGame.test2(secondUserInput)
 
 
 
