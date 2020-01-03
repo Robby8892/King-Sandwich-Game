@@ -5,6 +5,18 @@ html{
 
 }
 
+#stats {
+	font-weight: 900;
+	display: flex;
+	align-content: center;
+	justify-content: center;
+
+}
+
+.stats {
+	margin-left: 10px
+}
+
 #user-form{
 	display: flex;
 	align-content: center;
@@ -47,20 +59,19 @@ html{
 	margin-top: 200px;
 }
 
-
-#bacon {
-	margin-left: 5px;
-}
-
-#lettuce {
-	margin-left: 5px;
-}
-
-#tomato {
-	margin-left: 5px;
+#timer {
+	margin-left: 10px;
 
 }
 
+#score {
+	margin-left: 10px;
+
+}
+
+#round {
+	margin-left: 10px;
+}
 
 
 h1{

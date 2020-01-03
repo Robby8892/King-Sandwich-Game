@@ -8,23 +8,18 @@ console.log("King Sandwich Game");
 
 
 class Sandwich {
-	constructor(bread,ingredient1,ingredient2,ingredient3) {
+	constructor(bread) {
 
 		this.bread = false
-		this.ingredient1 = this.ingredient1
-		this.ingredient2 = this.ingredient2
-		this.ingredient3 = this.ingredient3
-
-
 
 	}
 }
 
 
 class Recipe {
-	constructor(ingredient, click, bacon, lettuce, tomato){
+	constructor(ingredient, click){
 
-		this.ingredient = true
+		this.ingredient = this.ingredient
 		this.click = false
 
 	}
@@ -57,16 +52,17 @@ class Player {
 
 
 const theSandwichGame = {
-	typeOfSandwich: ['pb&j&j','blt'],
+	typeOfSandwich: ['blt'],
 	theSandwich: null,
 	ingredients: [],
-	typeOfIngredients: null,
+	typeOfIngredients: [],
 	// choices: null,
 	correct: false,
 	name: null, 
 	timer: 30,
 	round: 0,
 	score: 0, 
+	interval: null,
 
 	generateSandwich(){
 
@@ -74,18 +70,13 @@ const theSandwichGame = {
 
 		this.theSandwich = this.typeOfSandwich[randomSandwich]
 
-		this.typeOfIngredients = new Sandwich()
-
 		// this.chooseSandwich()
 
 		this.theIngredients()
 
-		console.log(this.typeOfIngredients.ingredient1);
-
 		const list = this.typeOfIngredients.ingredient1 + " " + this.typeOfIngredients.ingredient2 + " " + this.typeOfIngredients.ingredient3
 
-		// console.log("It ha
-
+		
 
 	},
 	theIngredients(){
@@ -96,6 +87,18 @@ const theSandwichGame = {
 			this.typeOfIngredients.ingredient1 = 'bacon'
 			this.typeOfIngredients.ingredient2 = 'lettuce'
 			this.typeOfIngredients.ingredient3 = 'tomato'	
+		
+			const bacon = new Recipe()
+			const tomato = new Recipe()
+			const lettuce = new Recipe()
+
+			bacon.ingredient = 'bacon'
+			tomato.ingredient = 'tomato'
+			lettuce.ingredient = 'lettuce'
+
+			this.ingredients.push(bacon)
+			this.ingredients.push(tomato)
+			this.ingredients.push(lettuce)
 			
 		}	
 
@@ -113,23 +116,23 @@ const theSandwichGame = {
 	// 	this.typeOfIngredients.ingredient2 = 'more nothing'
 	// 	this.typeOfIngredients.ingredient3 = 'extra nothing'
 	// 	}
+	// },
+	// chooseSandwich() {
+	// 	if(this.choices === 0){
+
+	// 		this.ingredients = true
+	// 		this.theSandwich = this.typeOfSandwich[this.choices]
+
+	// 	}
+	// 	if(this.choices === 1) {
+
+	// 		this.ingredients = true
+	// 		this.theSandwich = this.typeOfSandwich[this.choices]
+	// 	}
+
 	},
-	chooseSandwich() {
-		if(this.choices === 0){
 
-			this.ingredients = true
-			this.theSandwich = this.typeOfSandwich[this.choices]
-
-		}
-		if(this.choices === 1) {
-
-			this.ingredients = true
-			this.theSandwich = this.typeOfSandwich[this.choices]
-		}
-
-	},
-
-	test(userInput){
+	intro(userInput){
 
 		this.name = userInput.value
 
@@ -163,27 +166,59 @@ const theSandwichGame = {
 		// $('<input id="recipe-input" placeholder="Ingredients"></input>').appendTo($('#recipe-form'))
 		// $('<button id="recipe-button">Enter</button>').appendTo($('#recipe-form'))
 
+		
+		this.theInterval()
+
+		this.printStats()
+
 		this.printIngredients()
 
-		this.testListen()
+		this.gameRound()
+
 
 
 	},
 
-	test2(userInput) {
+	gameRound($userInput) {
+
+		
+
+		const nameOfIngre = $userInput.data().whichIngredient
+		
+		for(let i = 0; i < this.ingredients.length; i++) { 
+
+			if(nameOfIngre === this.ingredients[i].ingredient){
+
+			$("<p class='messages'></p>").text("Good job that is a correct ingredient for a " + this.theSandwich).appendTo('#game-dialouge').fadeOut(1000)
+
+			$userInput.remove()	
+
+			this.ingredients[i].click = true
+
+			this.verifyAllWereClicked($userInput)
+
+			}	
+			// iff all of the correct ingredients are moved then the user receives a completed sandwich 
+
+		}
+
+
+		if(this.correct === true) {
+			
+
+
+			$("<p class='messages'></p>").text("You made a " + this.theSandwich).appendTo('#game-dialouge').fadeOut(10000)
+
+			this.printSandwich()
+			this.clearTheInterval()
+			this.round ++
+			this.score ++
+			this.timer = 30
+			this.printStats()
 
 
 
-
-		if(userInput ===  hasClass('ingredients') || userInput === hasClass('ingredients') || userInput === hasClass('ingredients')){
-
-		$("<p class='messages'></p>").text("Good job that is a correct ingredient for a " + this.theSandwich).appendTo('#game-dialouge')
-
-		this.printSandwich()
-
-		// $('#recipe-form').remove()
-
-	}
+		}
 
 
 
@@ -220,37 +255,10 @@ const theSandwichGame = {
 		}
 	},
 
-	testListen() {
-
-		$('#ingredients-container').on('click', (e) => {
-
-			// e.preventDefault()
-
-			// const input = $('#recipe-input')
-
-			// console.log(input);
-
-			// const userInput = input[0]
-
-			const userInput = e.target
-
-			console.log(userInput);
-
-			theSandwichGame.test2(userInput)
-
-		})
-	},
 	printIngredients() {
 
 
-		const bacon = new Recipe()
-		const lettuce = new Recipe()
-		const tomato = new Recipe()
-
-		this.ingredients.push(bacon)
-		this.ingredients.push(lettuce)
-		this.ingredients.push(tomato)
-
+		// const newSandwich = new Sandwich()
 
 		// $('#ingredients-container').text(this.ingredients[0])
 
@@ -258,23 +266,67 @@ const theSandwichGame = {
 
 			this.createIngredients()
 
-			$('<img class="ingredients" src="photo/bacon.png" >').appendTo('#bacon').css('width', '40%').attr('data-which-ingredient', 'bacon')
-			$('<img class="ingredients" src="photo/lettuce.png" >').appendTo('#lettuce').attr('data-which-ingredient', 'lettuce').text('lettuce')
-			$('<img class="ingredients" src="photo/tomato.png" >').appendTo('#tomato').attr('data-which-ingredient', 'tomato')
+			$('<img class="ingredients" src="photo/bacon.png">').appendTo('#bacon').css('width', '40%').attr('data-which-ingredient', this.ingredients[0].ingredient)
+			$('<img class="ingredients" src="photo/tomato.png">').appendTo('#tomato').attr('data-which-ingredient', this.ingredients[1].ingredient)
+			$('<img class="ingredients" src="photo/lettuce.png">').appendTo('#lettuce').attr('data-which-ingredient', this.ingredients[2].ingredient)
+		
+		}
 
+		if(this.theSandwich === 'pb&j&j'){
 
 
 		}
 
+
 	},
 	createIngredients() {
 
+		$('<div><div>').attr('id', this.typeOfIngredients.ingredient1).appendTo('#ingredients-container')
+		$('<div><div>').attr('id', this.typeOfIngredients.ingredient2).appendTo('#ingredients-container')
+		$('<div><div>').attr('id', this.typeOfIngredients.ingredient3).appendTo('#ingredients-container')
+},
+
+	verifyAllWereClicked($userInput) {
 
 
-		$('<div> <div>').text(this.typeOfIngredients.ingredient1).attr('id', this.typeOfIngredients.ingredient1).appendTo('#ingredients-container')
-		$('<div> <div>').text(this.typeOfIngredients.ingredient2).attr('id', this.typeOfIngredients.ingredient2).appendTo('#ingredients-container')
-		$('<div> <div>').text(this.typeOfIngredients.ingredient3).attr('id', this.typeOfIngredients.ingredient3).appendTo('#ingredients-container')
-}
+		if(this.ingredients[0].click === true && this.ingredients[1].click === true && this.ingredients[2].click === true ){
+
+			this.correct = true
+
+			}
+
+				
+
+	},
+	theInterval() {
+			
+			
+			this.interval = setInterval(() => {
+				this.timer --
+				$('#timer').text(this.timer)
+
+		},1000)
+
+
+
+	},
+
+	printStats() {
+
+
+		$('#timer').text(this.timer)
+		$('#round').text(this.round)
+		$('#score').text(this.score)
+	
+		
+
+
+	},
+	clearTheInterval() {
+
+		clearInterval(this.interval)
+
+	}
 
 }
 
@@ -286,12 +338,21 @@ $('#user-form').on('submit', (e) => {
 
 	const userInput = input[0]
 
-	theSandwichGame.test(userInput)
+	theSandwichGame.intro(userInput)
 
 })
 
 
 
+$('#ingredients-container').on('click', (e) => {
+
+
+	const $userInput = $(e.target)
+
+	theSandwichGame.gameRound($userInput)
+
+
+})
 
 
 
