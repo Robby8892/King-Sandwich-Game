@@ -17,10 +17,19 @@ html{
 	margin-left: 10px
 }
 
-#user-form{
+#user1-form{
 	display: flex;
 	align-content: center;
 	justify-content: center;
+	margin-left: 5px;
+}
+
+#user2-form {
+	display: flex;
+	align-content: center;
+	justify-content: center;
+	margin-left: 5px;
+	margin-top: 10px;
 }
 
 #recipe-form{
@@ -48,7 +57,7 @@ html{
 }
 
 
-.user-input .user-button {
+.user1-input .user1-button .user2-input .user2-button {
 	height: 15px;
 	margin-left: 5px;
 	margin: .2em;

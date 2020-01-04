@@ -33,10 +33,10 @@ class Recipe {
 }
 
 class Player {
-	constructor(name, name2){
+	constructor(name,hasName){
 
 		this.name = this.name
-		this.name2 = this.name2
+		this.hasName = false
 
 	}
 
@@ -61,8 +61,10 @@ const theSandwichGame = {
 	name: null, 
 	timer: 30,
 	round: 0,
-	score: 0, 
+	player1Score: 0, 
+	player2Score: 0,
 	interval: null,
+	playerNames: [],
 
 	generateSandwich(){
 
@@ -145,15 +147,18 @@ const theSandwichGame = {
 
 	},
 
-	intro(userInput){
+	intro(){
 
-		this.name = userInput.value
+		// this.name = user1Input.value
 
-		$('#user-form').remove()
+	
+
+		$('#user1-form').remove()
+		$('#user2-form').remove()
 
 		//welcome user to the game, and give them instructions 
 
-		$('<p class="messages"></p>').text("Welcome " + this.name +  " to the Your Royal Sandwich Game").appendTo($('#game-dialouge')).fadeOut(8800)
+		$('<p class="messages"></p>').text("Welcome " + this.playerNames[0].name + " & "  + this.playerNames[1].name +  " to the Your Royal Sandwich Game").appendTo($('#game-dialouge')).fadeOut(8800)
 		$('<p class="messages"></p>').text('You have been tasked with provding his Royal Highness a sandwich of his very desire!').appendTo($('#game-dialouge')).fadeOut(9000)
 		$("<p class='messages'></p>").text('Provide me with the correct recipe or face dire concequences!').appendTo($('#game-dialouge')).fadeOut(10000)
 
@@ -190,7 +195,7 @@ const theSandwichGame = {
 
 	},
 
-	gameRound($userInput) {
+	gameRound() {
 
 
 		const nameOfIngre = $userInput.data().whichIngredient
@@ -229,6 +234,18 @@ const theSandwichGame = {
 			this.resetRound()
 			this.newRound()
 
+
+		}
+
+
+		if(this.timer <= 0){
+
+			this.clearTheInterval()
+			this.round ++
+			this.timer = 30
+			this.printStats()
+			this.resetRound()
+			this.newRound()
 
 		}
 
@@ -334,7 +351,8 @@ const theSandwichGame = {
 
 		$('#timer').text(this.timer)
 		$('#round').text(this.round)
-		$('#score').text(this.score)
+		$('#score1').text(this.player1Score)
+		$('#score2').text(this.player2Score)
 	
 		
 
@@ -398,19 +416,78 @@ const theSandwichGame = {
 
 	tallyPoints() {
 
-	}
+	},
+
+	createPlayer1(user1Input,) {
+		
+
+		const player1 = new Player()
+
+		this.playerNames.push(player1)
+
+		this.playerNames[0].name = user1Input.value
+
+		this.playerNames[0].hasName = true
+
+	},
+
+	createPlayer2(user2Input) {
+
+		const player2 = new Player()
+
+		this.playerNames.push(player2)
+
+		this.playerNames[1].name = user2Input.value
+
+		this.playerNames[1].hasName = true
+
+		this.verifyTwoPlayers()
+
+	},
+
+	checkPlayerRound() {
+
+
+	},
+
+	verifyTwoPlayers() {
+
+		if(this.playerNames[0].hasName === true && this.playerNames[1].hasName === true) {
+
+			this.intro()
+
+		}
+
+	} 
 
 }
 
-$('#user-form').on('submit', (e) => {
+$('#user1-form').on('submit', (e) => {
 	
 	e.preventDefault()
 
-	const input = $('#user-input')
+	const input = $('#user1-input')
 
-	const userInput = input[0]
+	const user1Input = input[0]
 
-	theSandwichGame.intro(userInput)
+	console.log(user1Input.value);
+
+	theSandwichGame.createPlayer1(user1Input)
+
+})
+
+
+$('#user2-form').on('submit', (e) => {
+	
+	e.preventDefault()
+
+	const input = $('#user2-input')
+
+	const user2Input = input[0]
+
+	console.log(user2Input.value);
+
+	theSandwichGame.createPlayer2(user2Input)
 
 })
 
