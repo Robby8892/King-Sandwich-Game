@@ -154,9 +154,7 @@ const theSandwichGame = {
 		//welcome user to the game, and give them instructions 
 
 		$('<p class="messages"></p>').text("Welcome " + this.name +  " to the Your Royal Sandwich Game").appendTo($('#game-dialouge')).fadeOut(8800)
-
 		$('<p class="messages"></p>').text('You have been tasked with provding his Royal Highness a sandwich of his very desire!').appendTo($('#game-dialouge')).fadeOut(9000)
-
 		$("<p class='messages'></p>").text('Provide me with the correct recipe or face dire concequences!').appendTo($('#game-dialouge')).fadeOut(10000)
 
 
@@ -251,7 +249,7 @@ const theSandwichGame = {
 
 		if(this.theSandwich === 'pb&j&j') {
 
-			$('<img src= "photo/pbj.png">').css({
+			$('<img src= "photo/pbjj.png">').css({
 				'height': '150px',
 				'margin-top': '250px'
 			}).appendTo($('#sandwich'))
@@ -348,16 +346,25 @@ const theSandwichGame = {
 
 	},
 	newRound() {
-		if(this.round > 0){
+
+		if(this.round > 2 && this.round < 4){
+
+			this.winChecker()
+		}
+
+		if(this.round < 3 ){
 
 			this.generateSandwich()
-			$("<p class='messages'></p>").text("Next Round!").appendTo('#game-dialouge').fadeOut(1000)
+			$("<p class='messages'></p>").text("Next Round!").css('font-size', '100px').appendTo('#game-dialouge').fadeOut(1000)
 			$("<p class='messages'></p>").text('What are the ingredients for a ' + this.theSandwich + " !").appendTo($('#game-dialouge')).fadeOut(11000)
 			this.printIngredients()
 			this.theInterval()
 			// this.gameRound()
 
+
 		}
+
+		// if(this.round > 2 && this.round < 4)
 
 
 	},
@@ -366,11 +373,30 @@ const theSandwichGame = {
 
 		this.correct = false
 
+
 		for(let i = 0; i < this.ingredients.length ; i++){
 			this.ingredients[i].click = false
 
 
 		}
+
+	},
+	winChecker() {
+
+		// if(this.score === 3){
+			this.clearTheInterval()
+
+			$('<p class="messages"></p>').text("Congrats " + this.name +  ", you have satisfied his royal highness").appendTo($('#game-dialouge')).fadeOut(8800)
+			$('<p class="messages"></p>').text('You have spared yourself this day!').appendTo($('#game-dialouge')).fadeOut(9000)
+			$("<p class='messages'></p>").text('Farewell!').appendTo($('#game-dialouge')).fadeOut(10000)
+			$("<p class='messages'></p>").text("GAME OVER").css('font-size', '100px').appendTo('#game-dialouge')
+
+		// }
+
+
+	},
+
+	tallyPoints() {
 
 	}
 
