@@ -52,7 +52,7 @@ class Player {
 
 
 const theSandwichGame = {
-	typeOfSandwich: ['blt'],
+	typeOfSandwich: ['blt', 'pb&j&j'],
 	theSandwich: null,
 	ingredients: [],
 	typeOfIngredients: [],
@@ -103,11 +103,24 @@ const theSandwichGame = {
 		}	
 
 		else if(this.theSandwich === "pb&j&j"){
+
 			this.typeOfIngredients.bread = true
 			this.typeOfIngredients.ingredient1 = 'peanutbutter'
 			this.typeOfIngredients.ingredient2 = 'jelly'
-			this.typeOfIngredients.ingredient3 = 'jam'
+			this.typeOfIngredients.ingredient3 = 'jam'	
+		
 			
+			const peanutbutter = new Recipe()
+			const jelly = new Recipe()
+			const jam = new Recipe()
+
+			peanutbutter.ingredient = 'peanutbutter'
+			jelly.ingredient = 'jelly'
+			jam.ingredient = 'jam'
+
+			this.ingredients.push(peanutbutter)
+			this.ingredients.push(jelly)
+			this.ingredients.push(jam)
 			
 	}	
 	// else {
@@ -181,7 +194,6 @@ const theSandwichGame = {
 
 	gameRound($userInput) {
 
-		
 
 		const nameOfIngre = $userInput.data().whichIngredient
 		
@@ -209,13 +221,15 @@ const theSandwichGame = {
 
 			$("<p class='messages'></p>").text("You made a " + this.theSandwich).appendTo('#game-dialouge').fadeOut(10000)
 
+
 			this.printSandwich()
 			this.clearTheInterval()
 			this.round ++
 			this.score ++
 			this.timer = 30
 			this.printStats()
-
+			this.resetRound()
+			this.newRound()
 
 
 		}
@@ -274,6 +288,12 @@ const theSandwichGame = {
 
 		if(this.theSandwich === 'pb&j&j'){
 
+			this.createIngredients()
+
+			$('<img class="ingredients" src="photo/peanutbutter.png">').appendTo('#peanutbutter').attr('data-which-ingredient', this.ingredients[0].ingredient)
+			$('<img class="ingredients" src="photo/jam.png">').appendTo('#jelly').attr('data-which-ingredient', this.ingredients[1].ingredient)
+			$('<img class="ingredients" src="photo/jam2.png">').appendTo('#jam').attr('data-which-ingredient', this.ingredients[2].ingredient)
+
 
 		}
 
@@ -325,6 +345,32 @@ const theSandwichGame = {
 	clearTheInterval() {
 
 		clearInterval(this.interval)
+
+	},
+	newRound() {
+		if(this.round > 0){
+
+			this.generateSandwich()
+			$("<p class='messages'></p>").text("Next Round!").appendTo('#game-dialouge').fadeOut(1000)
+			$("<p class='messages'></p>").text('What are the ingredients for a ' + this.theSandwich + " !").appendTo($('#game-dialouge')).fadeOut(11000)
+			this.printIngredients()
+			this.theInterval()
+			// this.gameRound()
+
+		}
+
+
+	},
+
+	resetRound() {
+
+		this.correct = false
+
+		for(let i = 0; i < this.ingredients.length ; i++){
+			this.ingredients[i].click = false
+
+
+		}
 
 	}
 
