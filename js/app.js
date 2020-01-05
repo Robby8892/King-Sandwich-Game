@@ -63,6 +63,8 @@ const theSandwichGame = {
 	round: 0,
 	player1Score: 0, 
 	player2Score: 0,
+	turn: false,
+	playerTurn: null,
 	interval: null,
 	playerNames: [],
 
@@ -89,7 +91,7 @@ const theSandwichGame = {
 			this.typeOfIngredients.ingredient1 = 'bacon'
 			this.typeOfIngredients.ingredient2 = 'lettuce'
 			this.typeOfIngredients.ingredient3 = 'tomato'	
-		
+
 			const bacon = new Recipe()
 			const tomato = new Recipe()
 			const lettuce = new Recipe()
@@ -110,7 +112,7 @@ const theSandwichGame = {
 			this.typeOfIngredients.ingredient1 = 'peanutbutter'
 			this.typeOfIngredients.ingredient2 = 'jelly'
 			this.typeOfIngredients.ingredient3 = 'jam'	
-		
+
 			
 			const peanutbutter = new Recipe()
 			const jelly = new Recipe()
@@ -124,7 +126,7 @@ const theSandwichGame = {
 			this.ingredients.push(jelly)
 			this.ingredients.push(jam)
 			
-	}	
+		}	
 	// else {
 	// 	this.theSandwich = "Is not a sandwich"
 	// 	this.typeOfIngredients.ingredient1 = 'nothing'
@@ -145,13 +147,13 @@ const theSandwichGame = {
 	// 		this.theSandwich = this.typeOfSandwich[this.choices]
 	// 	}
 
-	},
+},
 
-	intro(){
+intro(){
 
 		// this.name = user1Input.value
 
-	
+
 
 		$('#user1-form').remove()
 		$('#user2-form').remove()
@@ -173,7 +175,7 @@ const theSandwichGame = {
 		// }if(input === '1'){
 		// 	this.choices = 1
 		// }
-	
+
 		// this.generateSandwich()
 		// alert('Your sandwich is ' + this.theSandwich)
 
@@ -189,67 +191,59 @@ const theSandwichGame = {
 
 		this.printIngredients()
 
-		this.gameRound()
+		this.checkPlayerRound()
+
+
+		
 
 
 
 	},
 
-	gameRound() {
-
+	playerRound($userInput) {
 
 		const nameOfIngre = $userInput.data().whichIngredient
+
+		console.log('click is here');
+
+		console.log($userInput.data().whichIngredient);
 		
 		for(let i = 0; i < this.ingredients.length; i++) { 
 
 			if(nameOfIngre === this.ingredients[i].ingredient){
 
-			$("<p class='messages'></p>").text("Good job that is a correct ingredient for a " + this.theSandwich).appendTo('#game-dialouge').fadeOut(1000)
+				$("<p class='messages'></p>").text("Good job that is a correct ingredient for a " + this.theSandwich).appendTo('#game-dialouge').fadeOut(1000)
 
-			$userInput.remove()	
+				$userInput.remove()	
 
-			this.ingredients[i].click = true
+				this.ingredients[i].click = true
 
-			this.verifyAllWereClicked($userInput)
+				this.verifyAllWereClicked($userInput)
 
 			}	
-			// iff all of the correct ingredients are moved then the user receives a completed sandwich 
+			// if all of the correct ingredients are moved then the user receives a completed sandwich 
 
 		}
 
 
 		if(this.correct === true) {
 			
-
+			$('.player').remove()
+			$('.messages').remove()
 
 			$("<p class='messages'></p>").text("You made a " + this.theSandwich).appendTo('#game-dialouge').fadeOut(10000)
 
-
 			this.printSandwich()
+			this.tallyPoints()
 			this.clearTheInterval()
-			this.round ++
-			this.score ++
 			this.timer = 30
 			this.printStats()
 			this.resetRound()
 			this.newRound()
 
 
-		}
-
-
-		if(this.timer <= 0){
-
-			this.clearTheInterval()
-			this.round ++
-			this.timer = 30
-			this.printStats()
-			this.resetRound()
-			this.newRound()
 
 		}
-
-
 
 		// const input = prompt("What is one the of the ingredients?")
 		// if(input === this.typeOfIngredients.ingredient1 || input === this.typeOfIngredients.ingredient2 || input === this.typeOfIngredients.ingredient3){
@@ -259,9 +253,81 @@ const theSandwichGame = {
 		// else if(input !== this.typeOfIngredients.ingredient1 || input !== this.typeOfIngredients.ingredient2 || input !== this.typeOfIngredients.ingredient3){
 		// 	alert('that\'s not right' );
 		// 	this.test2()
-			
+
 		// https://cdn.apps.joltteam.com/brikbuild/sandwich-pixel-art-8bit-bread-brik-bin-finger-food-food-pixel-pixel-art-sandwich-5a24f9b6f6c96a8d2972098a.brickImg.jpg
 	},
+
+	player2Round($userInput) {
+
+		const nameOfIngre = $userInput.data().whichIngredient
+
+		console.log(nameOfIngre + ' player2');
+		
+		for(let i = 0; i < this.ingredients.length; i++) { 
+
+			if(nameOfIngre === this.ingredients[i].ingredient){
+
+				$("<p class='messages'></p>").text("Good job that is a correct ingredient for a " + this.theSandwich).appendTo('#game-dialouge').fadeOut(1000)
+
+				$userInput.remove()	
+
+				this.ingredients[i].click = true
+
+				this.verifyAllWereClicked($userInput)
+
+			}	
+			// if all of the correct ingredients are moved then the user receives a completed sandwich 
+
+		}
+
+
+		if(this.correct === true) {
+			
+			$('.player').remove()
+			$('.messages').remove()
+
+			$("<p class='messages'></p>").text("You made a " + this.theSandwich).appendTo('#game-dialouge').fadeOut(10000)
+
+
+			this.printSandwich()
+			this.clearTheInterval()
+			this.player2Score ++
+			this.timer = 30
+			this.printStats()
+			this.resetRound()
+			this.newRound()
+			this.checkPlayerRound()
+
+
+		}
+
+		if(this.timer > 0 ){
+
+			this.checkTimer()
+
+		}
+
+		// const input = prompt("What is one the of the ingredients?")
+		// if(input === this.typeOfIngredients.ingredient1 || input === this.typeOfIngredients.ingredient2 || input === this.typeOfIngredients.ingredient3){
+		// 	this.correct = true
+		// 	console.log('that\'s right');
+		// }
+		// else if(input !== this.typeOfIngredients.ingredient1 || input !== this.typeOfIngredients.ingredient2 || input !== this.typeOfIngredients.ingredient3){
+		// 	alert('that\'s not right' );
+		// 	this.test2()
+
+		// https://cdn.apps.joltteam.com/brikbuild/sandwich-pixel-art-8bit-bread-brik-bin-finger-food-food-pixel-pixel-art-sandwich-5a24f9b6f6c96a8d2972098a.brickImg.jpg
+
+
+
+
+
+	},
+
+
+
+
+
 	printSandwich() {
 
 		if(this.theSandwich === 'pb&j&j') {
@@ -269,16 +335,16 @@ const theSandwichGame = {
 			$('<img src= "photo/pbjj.png">').css({
 				'height': '150px',
 				'margin-top': '250px'
-			}).appendTo($('#sandwich'))
+			}).appendTo($('#sandwich')).fadeOut(1000)
 
 		}
 
 		if(this.theSandwich === 'blt') {
 			$('<img src= "photo/blt.png">').css({
-			  'height': '150px',
-			  'margin-top': '250px' 
-			}).appendTo($('#sandwich'))
-		
+				'height': '150px',
+				'margin-top': '250px' 
+			}).appendTo($('#sandwich')).fadeOut(1000)
+
 		} else {
 			$('<img src= "">')
 		}
@@ -298,7 +364,7 @@ const theSandwichGame = {
 			$('<img class="ingredients" src="photo/bacon.png">').appendTo('#bacon').css('width', '40%').attr('data-which-ingredient', this.ingredients[0].ingredient)
 			$('<img class="ingredients" src="photo/tomato.png">').appendTo('#tomato').attr('data-which-ingredient', this.ingredients[1].ingredient)
 			$('<img class="ingredients" src="photo/lettuce.png">').appendTo('#lettuce').attr('data-which-ingredient', this.ingredients[2].ingredient)
-		
+
 		}
 
 		if(this.theSandwich === 'pb&j&j'){
@@ -319,7 +385,7 @@ const theSandwichGame = {
 		$('<div><div>').attr('id', this.typeOfIngredients.ingredient1).appendTo('#ingredients-container')
 		$('<div><div>').attr('id', this.typeOfIngredients.ingredient2).appendTo('#ingredients-container')
 		$('<div><div>').attr('id', this.typeOfIngredients.ingredient3).appendTo('#ingredients-container')
-},
+	},
 
 	verifyAllWereClicked($userInput) {
 
@@ -328,19 +394,28 @@ const theSandwichGame = {
 
 			this.correct = true
 
-			}
+		}
 
-				
+
 
 	},
 	theInterval() {
-			
-			
-			this.interval = setInterval(() => {
-				this.timer --
-				$('#timer').text(this.timer)
+
+
+		this.interval = setInterval(() => {
+			this.timer --
+			$('#timer').text(this.timer)
+
+			if(this.timer <= 0 ){
+
+				this.checkTimer()
+
+			}
 
 		},1000)
+
+
+
 
 
 
@@ -353,7 +428,7 @@ const theSandwichGame = {
 		$('#round').text(this.round)
 		$('#score1').text(this.player1Score)
 		$('#score2').text(this.player2Score)
-	
+
 		
 
 
@@ -365,19 +440,19 @@ const theSandwichGame = {
 	},
 	newRound() {
 
-		if(this.round > 2 && this.round < 4){
+		if(this.round > 5 && this.round < 7){
 
 			this.winChecker()
 		}
 
-		if(this.round < 3 ){
+		if(this.round < 6 ){
 
 			this.generateSandwich()
 			$("<p class='messages'></p>").text("Next Round!").css('font-size', '100px').appendTo('#game-dialouge').fadeOut(1000)
 			$("<p class='messages'></p>").text('What are the ingredients for a ' + this.theSandwich + " !").appendTo($('#game-dialouge')).fadeOut(11000)
 			this.printIngredients()
 			this.theInterval()
-			// this.gameRound()
+			this.checkPlayerRound()
 
 
 		}
@@ -416,6 +491,18 @@ const theSandwichGame = {
 
 	tallyPoints() {
 
+		if(this.playerTurn === this.playerNames[0].name) {
+			this.player1Score ++
+			this.round ++
+
+		}
+		
+		if(this.playerTurn === this.playerNames[1].name) {
+			this.player2Score ++ 
+			this.round ++ 
+
+		}
+
 	},
 
 	createPlayer1(user1Input,) {
@@ -447,6 +534,28 @@ const theSandwichGame = {
 
 	checkPlayerRound() {
 
+		if(this.turn === false) {
+
+
+			$('<p class="player"></p>').text(this.playerNames[0].name + ' turn').appendTo('#game-dialouge')
+			this.turn = !this.turn
+			this.playerTurn = this.playerNames[0].name
+
+			this.playerRound()
+
+		}
+
+		if(this.turn === true) {
+
+			$('<p class="player"></p>').text(this.playerNames[1].name + ' turn').appendTo('#game-dialouge')
+
+			this.turn = !this.turn
+			this.playerTurn = this.playerNames[1].name
+
+			this.playerRound()
+
+		}
+
 
 	},
 
@@ -457,6 +566,20 @@ const theSandwichGame = {
 			this.intro()
 
 		}
+
+	},
+
+	checkTimer() {
+
+
+		this.clearTheInterval()
+		this.round ++
+		this.timer = 30
+		this.printStats()
+		this.resetRound()
+		this.checkPlayerRound()
+
+
 
 	} 
 
@@ -498,10 +621,24 @@ $('#ingredients-container').on('click', (e) => {
 
 	const $userInput = $(e.target)
 
-	theSandwichGame.gameRound($userInput)
+	theSandwichGame.playerRound($userInput)
+
+
+
 
 
 })
+
+// $('#ingredients-container').on('click', (e) => {
+
+
+// 	const $userInput = $(e.target)
+
+
+// 	theSandwichGame.player2Round($userInput)
+
+
+// })
 
 
 
