@@ -59,7 +59,7 @@ const theSandwichGame = {
 	// choices: null,
 	correct: false,
 	name: null, 
-	timer: 30,
+	timer: 10,
 	round: 0,
 	player1Score: 0, 
 	player2Score: 0,
@@ -236,7 +236,6 @@ intro(){
 			this.printSandwich()
 			this.tallyPoints()
 			this.clearTheInterval()
-			this.timer = 30
 			this.printStats()
 			this.resetRound()
 			this.newRound()
@@ -257,72 +256,71 @@ intro(){
 		// https://cdn.apps.joltteam.com/brikbuild/sandwich-pixel-art-8bit-bread-brik-bin-finger-food-food-pixel-pixel-art-sandwich-5a24f9b6f6c96a8d2972098a.brickImg.jpg
 	},
 
-	player2Round($userInput) {
+	// player2Round($userInput) {
 
-		const nameOfIngre = $userInput.data().whichIngredient
+	// 	const nameOfIngre = $userInput.data().whichIngredient
 
-		console.log(nameOfIngre + ' player2');
+	// 	console.log(nameOfIngre + ' player2');
 		
-		for(let i = 0; i < this.ingredients.length; i++) { 
+	// 	for(let i = 0; i < this.ingredients.length; i++) { 
 
-			if(nameOfIngre === this.ingredients[i].ingredient){
+	// 		if(nameOfIngre === this.ingredients[i].ingredient){
 
-				$("<p class='messages'></p>").text("Good job that is a correct ingredient for a " + this.theSandwich).appendTo('#game-dialouge').fadeOut(1000)
+	// 			$("<p class='messages'></p>").text("Good job that is a correct ingredient for a " + this.theSandwich).appendTo('#game-dialouge').fadeOut(1000)
 
-				$userInput.remove()	
+	// 			$userInput.remove()	
 
-				this.ingredients[i].click = true
+	// 			this.ingredients[i].click = true
 
-				this.verifyAllWereClicked($userInput)
+	// 			this.verifyAllWereClicked($userInput)
 
-			}	
-			// if all of the correct ingredients are moved then the user receives a completed sandwich 
+	// 		}	
+	// 		// if all of the correct ingredients are moved then the user receives a completed sandwich 
 
-		}
+	// 	}
 
 
-		if(this.correct === true) {
+	// 	if(this.correct === true) {
 			
-			$('.player').remove()
-			$('.messages').remove()
+	// 		$('.player').remove()
+	// 		$('.messages').remove()
 
-			$("<p class='messages'></p>").text("You made a " + this.theSandwich).appendTo('#game-dialouge').fadeOut(10000)
-
-
-			this.printSandwich()
-			this.clearTheInterval()
-			this.player2Score ++
-			this.timer = 30
-			this.printStats()
-			this.resetRound()
-			this.newRound()
-			this.checkPlayerRound()
+	// 		$("<p class='messages'></p>").text("You made a " + this.theSandwich).appendTo('#game-dialouge').fadeOut(10000)
 
 
-		}
+	// 		this.printSandwich()
+	// 		this.clearTheInterval()
+	// 		this.player2Score ++
+	// 		this.printStats()
+	// 		this.resetRound()
+	// 		this.newRound()
+	// 		this.checkPlayerRound()
 
-		if(this.timer > 0 ){
 
-			this.checkTimer()
+	// 	}
 
-		}
+	// 	if(this.timer > 0 ){
 
-		// const input = prompt("What is one the of the ingredients?")
-		// if(input === this.typeOfIngredients.ingredient1 || input === this.typeOfIngredients.ingredient2 || input === this.typeOfIngredients.ingredient3){
-		// 	this.correct = true
-		// 	console.log('that\'s right');
-		// }
-		// else if(input !== this.typeOfIngredients.ingredient1 || input !== this.typeOfIngredients.ingredient2 || input !== this.typeOfIngredients.ingredient3){
-		// 	alert('that\'s not right' );
-		// 	this.test2()
+	// 		this.checkTimer()
 
-		// https://cdn.apps.joltteam.com/brikbuild/sandwich-pixel-art-8bit-bread-brik-bin-finger-food-food-pixel-pixel-art-sandwich-5a24f9b6f6c96a8d2972098a.brickImg.jpg
+	// 	}
 
+	// 	// const input = prompt("What is one the of the ingredients?")
+	// 	// if(input === this.typeOfIngredients.ingredient1 || input === this.typeOfIngredients.ingredient2 || input === this.typeOfIngredients.ingredient3){
+	// 	// 	this.correct = true
+	// 	// 	console.log('that\'s right');
+	// 	// }
+	// 	// else if(input !== this.typeOfIngredients.ingredient1 || input !== this.typeOfIngredients.ingredient2 || input !== this.typeOfIngredients.ingredient3){
+	// 	// 	alert('that\'s not right' );
+	// 	// 	this.test2()
+
+	// 	// https://cdn.apps.joltteam.com/brikbuild/sandwich-pixel-art-8bit-bread-brik-bin-finger-food-food-pixel-pixel-art-sandwich-5a24f9b6f6c96a8d2972098a.brickImg.jpg
 
 
 
 
-	},
+
+	// },
 
 
 
@@ -412,7 +410,7 @@ intro(){
 
 			}
 
-		},1000)
+		},500)
 
 
 
@@ -465,7 +463,7 @@ intro(){
 	resetRound() {
 
 		this.correct = false
-
+		this.timer = 10
 
 		for(let i = 0; i < this.ingredients.length ; i++){
 			this.ingredients[i].click = false
@@ -476,17 +474,24 @@ intro(){
 	},
 	winChecker() {
 
-		// if(this.score === 3){
+		if(this.player1Score > this.player2Score){
 			this.clearTheInterval()
 
-			$('<p class="messages"></p>').text("Congrats " + this.name +  ", you have satisfied his royal highness").appendTo($('#game-dialouge')).fadeOut(8800)
+			$('<p class="messages"></p>').text("Congrats " + this.playerNames[0].name +  ", you have satisfied his royal highness").appendTo($('#game-dialouge')).fadeOut(8800)
 			$('<p class="messages"></p>').text('You have spared yourself this day!').appendTo($('#game-dialouge')).fadeOut(9000)
 			$("<p class='messages'></p>").text('Farewell!').appendTo($('#game-dialouge')).fadeOut(10000)
 			$("<p class='messages'></p>").text("GAME OVER").css('font-size', '100px').appendTo('#game-dialouge')
 
-		// }
+		}
+		if(this.player1Score < this.player2Score){
+			this.clearTheInterval()
 
+			$('<p class="messages"></p>').text("Congrats " + this.playerNames[1].name +  ", you have satisfied his royal highness").appendTo($('#game-dialouge')).fadeOut(8800)
+			$('<p class="messages"></p>').text('You have spared yourself this day!').appendTo($('#game-dialouge')).fadeOut(9000)
+			$("<p class='messages'></p>").text('Farewell!').appendTo($('#game-dialouge')).fadeOut(10000)
+			$("<p class='messages'></p>").text("GAME OVER").css('font-size', '100px').appendTo('#game-dialouge')
 
+		}
 	},
 
 	tallyPoints() {
@@ -571,13 +576,14 @@ intro(){
 
 	checkTimer() {
 
-
+		$('.ingredients').remove()
+		$('.player').remove()
 		this.clearTheInterval()
 		this.round ++
-		this.timer = 30
+		this.timer = 10
 		this.printStats()
 		this.resetRound()
-		this.checkPlayerRound()
+		this.newRound()
 
 
 
