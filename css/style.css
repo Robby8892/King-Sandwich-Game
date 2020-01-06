@@ -1,4 +1,4 @@
-html{
+	html{
 	background-image:  url(https://media.boingboing.net/wp-content/uploads/2019/09/68747470733a2f2f692e696d6775722e636f6d2f686e6661385a362e706e67.png);
 	background-size: 100%;
 
@@ -14,7 +14,8 @@ html{
 }
 
 .stats {
-	margin-left: 10px
+	margin-left: 10px;
+	color: white;
 }
 
 #user1-form{
@@ -54,6 +55,7 @@ html{
 	text-align: center;
 	font-family: 'Press Start 2P', cursive;
 	font-weight: 900;
+	color: white;
 }
 
 
@@ -69,6 +71,7 @@ html{
 	text-align: center;
 	font-family: 'Press Start 2P', cursive;
 	font-weight: 900;	
+	color: white;
 }
 
 
@@ -76,6 +79,7 @@ html{
 	height: 100px;
 	margin-top: 200px;
 	margin-left: 10px;
+	background-color: transparent;
 }
 
 #timer {
@@ -96,6 +100,7 @@ html{
 h1{
 	text-align: center;
 	font-family: 'Press Start 2P', cursive;
+	color: white;
 
 }
 

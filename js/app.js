@@ -8,9 +8,32 @@ console.log("King Sandwich Game");
 
 
 class Sandwich {
-	constructor(bread) {
+	constructor(name, bread) {
 
+		this.name = this.name 
 		this.bread = false
+
+	}
+
+	reuben() {
+
+		this.name = 'reuben'
+
+	}
+
+	blt() {
+		this.name = 'blt'
+
+	}
+
+	pbjj() {
+		this.name = 'pb&j&j'
+
+	}
+
+	turkeyClub() {
+
+		this.name = 'turkeyclub'
 
 	}
 }
@@ -52,7 +75,7 @@ class Player {
 
 
 const theSandwichGame = {
-	typeOfSandwich: ['blt', 'pb&j&j'],
+	typeOfSandwich: ['blt','pb&j&j','reuben', 'turkeyclub'],
 	theSandwich: null,
 	ingredients: [],
 	typeOfIngredients: [],
@@ -72,7 +95,11 @@ const theSandwichGame = {
 
 		const randomSandwich = Math.floor(Math.random() * this.typeOfSandwich.length)
 
-		this.theSandwich = this.typeOfSandwich[randomSandwich]
+		this.theSandwich = new Sandwich()
+
+		this.theSandwich.name = this.typeOfSandwich[randomSandwich]
+
+
 
 		// this.chooseSandwich()
 
@@ -85,73 +112,102 @@ const theSandwichGame = {
 	},
 	theIngredients(){
 
-		if(this.theSandwich === "blt"){
 
-			this.typeOfIngredients.bread = true
-			this.typeOfIngredients.ingredient1 = 'bacon'
-			this.typeOfIngredients.ingredient2 = 'lettuce'
-			this.typeOfIngredients.ingredient3 = 'tomato'	
 
-			const bacon = new Recipe()
-			const tomato = new Recipe()
-			const lettuce = new Recipe()
+		if(this.theSandwich.name === "blt") {
 
-			bacon.ingredient = 'bacon'
-			tomato.ingredient = 'tomato'
-			lettuce.ingredient = 'lettuce'
+				this.theSandwich.bread = true
+				this.typeOfIngredients.ingredient1 = 'bacon'
+				this.typeOfIngredients.ingredient2 = 'lettuce'
+				this.typeOfIngredients.ingredient3 = 'tomato'	
 
-			this.ingredients.push(bacon)
-			this.ingredients.push(tomato)
-			this.ingredients.push(lettuce)
-			
+				const bacon = new Recipe()
+				const tomato = new Recipe()
+				const lettuce = new Recipe()
+
+				bacon.ingredient = 'bacon'
+				tomato.ingredient = 'tomato'
+				lettuce.ingredient = 'lettuce'
+
+				this.ingredients.push(bacon)
+				this.ingredients.push(tomato)
+				this.ingredients.push(lettuce)
 		}	
 
-		else if(this.theSandwich === "pb&j&j"){
+		else if(this.theSandwich.name === "pb&j&j") {
 
-			this.typeOfIngredients.bread = true
-			this.typeOfIngredients.ingredient1 = 'peanutbutter'
-			this.typeOfIngredients.ingredient2 = 'jelly'
-			this.typeOfIngredients.ingredient3 = 'jam'	
+				this.theSandwich.bread = true
+				this.typeOfIngredients.ingredient1 = 'peanutbutter'
+				this.typeOfIngredients.ingredient2 = 'jelly'
+				this.typeOfIngredients.ingredient3 = 'jam'	
 
-			
-			const peanutbutter = new Recipe()
-			const jelly = new Recipe()
-			const jam = new Recipe()
+				
+				const peanutbutter = new Recipe()
+				const jelly = new Recipe()
+				const jam = new Recipe()
 
-			peanutbutter.ingredient = 'peanutbutter'
-			jelly.ingredient = 'jelly'
-			jam.ingredient = 'jam'
+				peanutbutter.ingredient = 'peanutbutter'
+				jelly.ingredient = 'jelly'
+				jam.ingredient = 'jam'
 
-			this.ingredients.push(peanutbutter)
-			this.ingredients.push(jelly)
-			this.ingredients.push(jam)
-			
+				this.ingredients.push(peanutbutter)
+				this.ingredients.push(jelly)
+				this.ingredients.push(jam)
 		}	
-	// else {
-	// 	this.theSandwich = "Is not a sandwich"
-	// 	this.typeOfIngredients.ingredient1 = 'nothing'
-	// 	this.typeOfIngredients.ingredient2 = 'more nothing'
-	// 	this.typeOfIngredients.ingredient3 = 'extra nothing'
-	// 	}
-	// },
-	// chooseSandwich() {
-	// 	if(this.choices === 0){
 
-	// 		this.ingredients = true
-	// 		this.theSandwich = this.typeOfSandwich[this.choices]
+	  else if(this.theSandwich.name === "reuben") {
 
-	// 	}
-	// 	if(this.choices === 1) {
+	  		this.theSandwich.bread = true
+			this.typeOfIngredients.ingredient1 = 'cornedbeef'
+			this.typeOfIngredients.ingredient2 = 'swisscheese'
+			this.typeOfIngredients.ingredient3 = 'sauerkraut'	
 
-	// 		this.ingredients = true
-	// 		this.theSandwich = this.typeOfSandwich[this.choices]
-	// 	}
+			
+			const cornedBeef = new Recipe()
+			const swissCheese = new Recipe()
+			const sauerkraut = new Recipe()
+
+			cornedBeef.ingredient = 'cornedbeef'
+			swissCheese.ingredient = 'swisscheese'
+			sauerkraut.ingredient = 'sauerkraut'
+
+			this.ingredients.push(cornedBeef)
+			this.ingredients.push(swissCheese)
+			this.ingredients.push(sauerkraut)
+	  }
+
+	  else if(this.theSandwich.name === 'turkeyclub') {
+
+	  		this.theSandwich.bread = true
+			this.typeOfIngredients.ingredient1 = 'ham'
+			this.typeOfIngredients.ingredient2 = 'mayo'
+			this.typeOfIngredients.ingredient3 = 'lettuce&tomato'	
+
+			
+			const ham = new Recipe()
+			const mayo = new Recipe()
+			const lettuceTomato = new Recipe()
+
+			ham.ingredient = 'ham'
+			mayo.ingredient = 'mayo'
+			lettuceTomato.ingredient = 'lettuce&tomato'
+
+			this.ingredients.push(ham)
+			this.ingredients.push(mayo)
+			this.ingredients.push(lettuceTomato)
+
+
+
+
+	  }
 
 },
 
 intro(){
 
-		// this.name = user1Input.value
+		
+		$('html').css({'background-image': 'url(https://cdna.artstation.com/p/assets/images/images/007/419/268/large/connor-wakes-conwak-sotn.jpg?1506008314)',
+		"background-size": "100%"})
 
 
 
@@ -167,7 +223,7 @@ intro(){
 
 		this.generateSandwich()
 
-		$("<p class='messages'></p>").text('What are the ingredients for a ' + this.theSandwich + " !").appendTo($('#game-dialouge')).fadeOut(11000)
+		$("<p class='messages'></p>").text('What are the ingredients for a ' + this.theSandwich.name + " !").appendTo($('#game-dialouge')).fadeOut(11000)
 
 		// const input = prompt('Pick! (0/1)')
 		// if(input === '0'){
@@ -187,13 +243,26 @@ intro(){
 		
 		this.theInterval()
 
-		this.printStats()
-
 		this.printIngredients()
 
 		this.checkPlayerRound()
 
+		
 
+
+
+		// setTimeout(this.theInterval, 1000)
+
+		// console.log(setTimeout);
+
+		// console.log(this.theInterval);
+
+
+		// console.log(setTimeout(this.theInterval, 1000));
+
+		// setTimeout(this.printIngredients, 1000)
+
+		// setTimeout(this.checkPlayerRound, 1000)
 		
 
 
@@ -212,11 +281,12 @@ intro(){
 
 			if(nameOfIngre === this.ingredients[i].ingredient){
 
-				$("<p class='messages'></p>").text("Good job that is a correct ingredient for a " + this.theSandwich).appendTo('#game-dialouge').fadeOut(1000)
+				$("<p class='messages'></p>").text("Good job that is a correct ingredient for a " + this.theSandwich.name).appendTo('#game-dialouge').fadeOut(1000)
 
 				$userInput.remove()	
 
 				this.ingredients[i].click = true
+
 
 				this.verifyAllWereClicked($userInput)
 
@@ -231,7 +301,7 @@ intro(){
 			$('.player').remove()
 			$('.messages').remove()
 
-			$("<p class='messages'></p>").text("You made a " + this.theSandwich).appendTo('#game-dialouge').fadeOut(10000)
+			$("<p class='messages'></p>").text("You made a " + this.theSandwich.name).appendTo('#game-dialouge').fadeOut(10000)
 
 			this.printSandwich()
 			this.tallyPoints()
@@ -328,23 +398,33 @@ intro(){
 
 	printSandwich() {
 
-		if(this.theSandwich === 'pb&j&j') {
+		if(this.theSandwich.name === 'pb&j&j') {
 
 			$('<img src= "photo/pbjj.png">').css({
 				'height': '150px',
 				'margin-top': '250px'
 			}).appendTo($('#sandwich')).fadeOut(1000)
-
 		}
 
-		if(this.theSandwich === 'blt') {
+		if(this.theSandwich.name === 'blt') {
 			$('<img src= "photo/blt.png">').css({
 				'height': '150px',
 				'margin-top': '250px' 
 			}).appendTo($('#sandwich')).fadeOut(1000)
+		}
 
-		} else {
-			$('<img src= "">')
+		if(this.theSandwich.name === 'reuben') {
+			$('<img src= "photo/reuben.png">').css({
+				'height': '150px',
+				'margin-top': '250px'
+			}).appendTo($('#sandwich')).fadeOut(1000)
+		}
+
+		if(this.theSandwich.name === 'turkeyclub') {
+			$('<img src= "photo/turkeyclub.png">').css({
+				'height': '150px',
+				'margin-top': '250px'
+			}).appendTo($('#sandwich')).fadeOut(1000)
 		}
 	},
 
@@ -355,7 +435,7 @@ intro(){
 
 		// $('#ingredients-container').text(this.ingredients[0])
 
-		if(this.theSandwich === 'blt'){
+		if(this.theSandwich.name === 'blt') {
 
 			this.createIngredients()
 
@@ -365,13 +445,34 @@ intro(){
 
 		}
 
-		if(this.theSandwich === 'pb&j&j'){
+		if(this.theSandwich.name === 'pb&j&j') {
 
 			this.createIngredients()
 
 			$('<img class="ingredients" src="photo/peanutbutter.png">').appendTo('#peanutbutter').attr('data-which-ingredient', this.ingredients[0].ingredient)
 			$('<img class="ingredients" src="photo/jam.png">').appendTo('#jelly').attr('data-which-ingredient', this.ingredients[1].ingredient)
 			$('<img class="ingredients" src="photo/jam2.png">').appendTo('#jam').attr('data-which-ingredient', this.ingredients[2].ingredient)
+
+
+		}
+
+		if(this.theSandwich.name === 'reuben') {
+
+			this.createIngredients()
+
+			$('<img class="ingredients" src="photo/cornedbeef.png">').appendTo('#cornedbeef').attr('data-which-ingredient', this.ingredients[0].ingredient)
+			$('<img class="ingredients" src="photo/swisscheese.png">').appendTo('#swisscheese').attr('data-which-ingredient', this.ingredients[1].ingredient)
+			$('<img class="ingredients" src="photo/sauerkraut.png">').appendTo('#sauerkraut').attr('data-which-ingredient', this.ingredients[2].ingredient)
+
+		}
+
+		if(this.theSandwich.name === 'turkeyclub') {
+
+			this.createIngredients()
+
+			$('<img class="ingredients" src="photo/ham.png">').appendTo('#ham').attr('data-which-ingredient', this.ingredients[0].ingredient)
+			$('<img class="ingredients" src="photo/mayo.png">').appendTo('#mayo').attr('data-which-ingredient', this.ingredients[1].ingredient)
+			$('<img class="ingredients" src="photo/tomato&lettuce.png">').appendTo('#lettuce&tomato').attr('data-which-ingredient', this.ingredients[2].ingredient)
 
 
 		}
@@ -385,7 +486,7 @@ intro(){
 		$('<div><div>').attr('id', this.typeOfIngredients.ingredient3).appendTo('#ingredients-container')
 	},
 
-	verifyAllWereClicked($userInput) {
+	verifyAllWereClicked() {
 
 
 		if(this.ingredients[0].click === true && this.ingredients[1].click === true && this.ingredients[2].click === true ){
@@ -447,7 +548,7 @@ intro(){
 
 			this.generateSandwich()
 			$("<p class='messages'></p>").text("Next Round!").css('font-size', '100px').appendTo('#game-dialouge').fadeOut(1000)
-			$("<p class='messages'></p>").text('What are the ingredients for a ' + this.theSandwich + " !").appendTo($('#game-dialouge')).fadeOut(11000)
+			$("<p class='messages'></p>").text('What are the ingredients for a ' + this.theSandwich.name + " !").appendTo($('#game-dialouge')).fadeOut(11000)
 			this.printIngredients()
 			this.theInterval()
 			this.checkPlayerRound()
@@ -464,6 +565,7 @@ intro(){
 
 		this.correct = false
 		this.timer = 10
+		this.ingredients.splice(0,3)
 
 		for(let i = 0; i < this.ingredients.length ; i++){
 			this.ingredients[i].click = false
@@ -635,16 +737,7 @@ $('#ingredients-container').on('click', (e) => {
 
 })
 
-// $('#ingredients-container').on('click', (e) => {
-
-
-// 	const $userInput = $(e.target)
-
-
-// 	theSandwichGame.player2Round($userInput)
-
-
-// })
+	
 
 
 
