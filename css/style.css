@@ -1,8 +1,6 @@
 	html{
 	background-image:  url(https://media.boingboing.net/wp-content/uploads/2019/09/68747470733a2f2f692e696d6775722e636f6d2f686e6661385a362e706e67.png);
 	background-size: 100%;
-
-
 }
 
 #stats {
@@ -51,6 +49,14 @@
 	justify-content: center;
 }
 
+#bad-ingredients {
+	display: flex;
+	align-content: center;
+	justify-content: center;
+
+}
+
+
 .messages{
 	text-align: center;
 	font-family: 'Press Start 2P', cursive;
@@ -79,7 +85,15 @@
 	height: 100px;
 	margin-top: 200px;
 	margin-left: 10px;
-	background-color: transparent;
+	animation: .5s linear 1s infinite alternate bounce;
+}
+
+.badIngredient {
+
+	height: 100px;
+	margin-top: 200px;
+	margin-left: 10px;
+
 }
 
 #timer {
@@ -109,3 +123,17 @@ footer{
 	align-content: center;
 	justify-content: center;
 }
+
+
+@keyframes bounce {
+	from { 
+		height: 100px
+
+	}
+
+	to {
+		height: 60px;
+	}
+
+}
+
