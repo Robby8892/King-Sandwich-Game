@@ -91,7 +91,7 @@ const theSandwichGame = {
 	// choices: null,
 	correct: false,
 	name: null, 
-	timer: 10,
+	timer: 30,
 	round: 0,
 	player1Score: 0, 
 	player2Score: 0,
@@ -101,6 +101,7 @@ const theSandwichGame = {
 	badIngredient: [],
 	playerNames: [],
 	randomImg: null,
+	timerPoints: 0,
 
 	generateSandwich(){
 
@@ -282,6 +283,8 @@ intro(){
 
 	playerRound($userInput) {
 
+		this.timerPoints = this.timer
+
 		const nameOfIngre = $userInput.data().whichIngredient
 
 		console.log('click is here');
@@ -307,12 +310,15 @@ intro(){
 		}
 
 
+
+
 		if(this.correct === true) {
 			
 			$('.player').remove()
 			$('.messages').remove()
 
 			$("<p class='messages'></p>").text("You made a " + this.theSandwich.name).appendTo('#game-dialouge').fadeOut(10000)
+
 
 			this.printSandwich()
 			this.tallyPoints()
@@ -579,7 +585,7 @@ intro(){
 			this.timer --
 			$('#timer').text(this.timer)
 
-			if(this.timer <= 0 ){
+			if(this.timer <= 0 ) {
 
 				this.checkTimer()
 
@@ -638,7 +644,7 @@ intro(){
 	resetRound() {
 
 		this.correct = false
-		this.timer = 10
+		this.timer = 30
 		this.ingredients.splice(0,3)
 
 		for(let i = 0; i < this.ingredients.length ; i++){
@@ -675,12 +681,14 @@ intro(){
 		if(this.playerTurn === this.playerNames[0].name) {
 			this.player1Score ++
 			this.round ++
+			this.tallyTimerP1()
 
 		}
 		
 		if(this.playerTurn === this.playerNames[1].name) {
 			this.player2Score ++ 
 			this.round ++ 
+			this.tallyTimerP2()
 
 		}
 
@@ -752,18 +760,74 @@ intro(){
 
 	checkTimer() {
 
+
+		
 		$('.ingredients').remove()
 		$('.player').remove()
 		this.clearTheInterval()
 		this.round ++
-		this.timer = 10
+		this.timer = 30
 		this.printStats()
 		this.resetRound()
 		this.newRound()
 
 
 
-	} 
+	},
+	bonusRound() {
+
+
+
+
+	},
+
+	tallyTimerP1() {
+
+
+
+		if(this.timerPoints < 30 && this.timerPoints > 25) {
+
+			this.player1Score += 3
+
+		}
+
+		if(this.timerPoints < 25 && this.timerPoints > 15) {
+
+			this.player1Score += 2
+
+		}
+
+		if(this.timerPoints < 15 && this.timerPoints > 0 ) {
+
+			this.player1Score += 1
+		}
+
+
+	},
+
+	tallyTimerP2() {
+
+
+
+		if(this.timerPoints < 30 && this.timerPoints > 25) {
+
+			this.player2Score += 3
+
+		}
+
+		if(this.timerPoints < 25 && this.timerPoints > 15) {
+
+			this.player2Score += 2
+
+		}
+
+		if(this.timerPoints < 15 && this.timerPoints > 0 ) {
+
+			this.player2Score += 1
+		}
+
+
+	}
 
 }
 
