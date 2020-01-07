@@ -102,6 +102,7 @@ const theSandwichGame = {
     playerNames: [],
     randomImg: null,
     timerPoints: 0,
+    theKing: [],
 
     generateSandwich() {
 
@@ -782,15 +783,37 @@ const theSandwichGame = {
     createKing() {
 
 
-    	$('<img id="king-char" src="source-images/kingeating.png">').appendTo('#king')
+    	$('<img id="king-char" src="source-images/kingeating.png">').appendTo('#5')
 
     },
 
-    movementOfKing() {
+    movementOfKing($userInput) {
 
-    	this.createKing()
+    	// this.createKing()
 
+    	console.log($('#king-char'));
 
+    	if($userInput[0] === 119) {
+
+    		// console.log('You got it');
+    		$('#king-char').css('position','right')
+
+    	}
+
+    	if($userInput ==='s' ) {
+
+    		$('#king-char')
+    	}
+
+    	if($userInput === 'a') {
+
+    		$('#king-char')
+    	}
+
+    	if($userInput === 'd') {
+
+    		$('#king-char')
+    	}
     },
 
     createMultipleSandwiches() {
@@ -800,8 +823,8 @@ const theSandwichGame = {
 
     createGameBoard() {
 
-    	for(let i = 0; i < 168; i++) {
-    		$('<div class="bonus-game">This is a div</div>').appendTo('#the-game-container')
+    	for(let i = 0; i < 133; i++) {
+    		$('<div class="bonus-game">This is a div</div>').appendTo('#the-game-container').attr('id', i)
     	}
 
 
@@ -914,18 +937,24 @@ $('#ingredients-container').on('click', (e) => {
 
 })
 
-$('#king-char').on('keypress', (e) => {
+// $('body').on('keypress', (e) => {
 
-	const userInput = $(e.key)
+// 	const $userInput = $(e.keyCode)
 
-})
+// 	console.log($userInput);
 
-  	$('html').css({
-        	'background-image': 'url(https://cdn.wallpapersafari.com/79/31/KOoJ2e.png)',
-            "background-size": "100%"
-        })
+// 	theSandwichGame.movementOfKing($userInput)
 
-  	theSandwichGame.createGameBoard()
+// })
+
+//   	$('html').css({
+//         	'background-image': 'url(https://cdn.wallpapersafari.com/79/31/KOoJ2e.png)',
+//             "background-size": "100%"
+//         })
+
+//   	theSandwichGame.createGameBoard()
+//   	theSandwichGame.createKing()
+
 
 // here my event listener will live that needs to be checking for user input to start the game
 // and looking for clicks on the divs that I will be creating a class for, there should be two classes
