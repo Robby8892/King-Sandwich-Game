@@ -220,6 +220,8 @@ const theSandwichGame = {
 
         $('#user1-form').remove()
         $('#user2-form').remove()
+        $('#button-mapping').remove()
+        $('.intro').remove()
 
         $('<p class="messages"></p>').text("Welcome " + this.playerNames[0].name + " & " + this.playerNames[1].name + " to the Your Royal Sandwich Game").appendTo($('#game-dialouge')).fadeOut(1200)
         $('<p class="messages"></p>').text('You have been tasked with provding his Royal Highness a sandwich of his very desire!').appendTo($('#game-dialouge')).fadeOut(1200)
@@ -422,6 +424,8 @@ const theSandwichGame = {
 
 
     // createBadIngredients() {
+
+    	// this will be used to created bad ingredients 
 
     //     const badIngredient1 = new Badrecipe()
     //     const badIngredient2 = new Badrecipe()
@@ -693,7 +697,6 @@ const theSandwichGame = {
     		$('#king-char').css('margin-top', '-=50px')
     		console.log(this.kingPosition.left);
     		this.kingPosition = $('#king-char').offset()
-    		console.log($('#sandwich').position().left);
     		console.log($('#sandwich').offset().left)
 
     		this.checkPostion()
@@ -708,7 +711,6 @@ const theSandwichGame = {
 
     		this.kingPosition = $('#king-char').offset()
     		console.log(this.kingPosition.left);
-    		console.log($('#sandwich').position().left);
     		console.log($('#sandwich').offset().left)
     		this.checkPostion()
 
