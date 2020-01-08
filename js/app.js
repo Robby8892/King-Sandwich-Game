@@ -221,14 +221,14 @@ const theSandwichGame = {
         $('#user1-form').remove()
         $('#user2-form').remove()
 
-        $('<p class="messages"></p>').text("Welcome " + this.playerNames[0].name + " & " + this.playerNames[1].name + " to the Your Royal Sandwich Game").appendTo($('#game-dialouge')).fadeOut(8800)
-        $('<p class="messages"></p>').text('You have been tasked with provding his Royal Highness a sandwich of his very desire!').appendTo($('#game-dialouge')).fadeOut(9000)
-        $("<p class='messages'></p>").text('Provide me with the correct recipe or face dire concequences!').appendTo($('#game-dialouge')).fadeOut(10000)
+        $('<p class="messages"></p>').text("Welcome " + this.playerNames[0].name + " & " + this.playerNames[1].name + " to the Your Royal Sandwich Game").appendTo($('#game-dialouge')).fadeOut(1200)
+        $('<p class="messages"></p>').text('You have been tasked with provding his Royal Highness a sandwich of his very desire!').appendTo($('#game-dialouge')).fadeOut(1200)
+        $("<p class='messages'></p>").text('Provide me with the correct recipe or face dire concequences!').appendTo($('#game-dialouge')).fadeOut(1200)
 
 
         this.generateSandwich()
 
-        $("<p class='messages'></p>").text('What are the ingredients for a ' + this.theSandwich.name + " !").appendTo($('#game-dialouge')).fadeOut(11000)
+        $("<p class='messages'></p>").text('What are the ingredients for a ' + this.theSandwich.name + " !").appendTo($('#game-dialouge')).fadeOut(4000)
 
 
         this.theInterval()
@@ -253,7 +253,7 @@ const theSandwichGame = {
 
             if (nameOfIngre === this.ingredients[i].ingredient) {
 
-                $("<p class='messages'></p>").text("Good job that is a correct ingredient for a " + this.theSandwich.name).appendTo('h2').fadeOut(1000)
+                $("<p class='messages'></p>").text("Good job that is a correct ingredient for a " + this.theSandwich.name).appendTo('h2').fadeOut(800)
 
                 $userInput.remove()
 
@@ -798,7 +798,7 @@ const theSandwichGame = {
     checkPostion() {
 
 
-    	if(this.kingPosition.left === 5 && $('#0').children()[0] === this.bonusRoundSandwich[0]) {
+    	if(this.kingPosition.left === 5 && $('#0').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 315 && $('#0').children()[0] === this.bonusRoundSandwich[0]) {
 
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
@@ -806,7 +806,7 @@ const theSandwichGame = {
 
     	}
 
-    	if(this.kingPosition.left === 105 && $('#1').children()[0] === this.bonusRoundSandwich[0]) {
+    	if(this.kingPosition.left === 105 && $('#1').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 415.0000305175781 && $('#1').children()[0] === this.bonusRoundSandwich[0]) {
 
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
@@ -814,7 +814,7 @@ const theSandwichGame = {
 
     	}
 
-    	if(this.kingPosition.left === 255 && $('#2').children()[0] === this.bonusRoundSandwich[0]) {
+    	if(this.kingPosition.left === 255 && $('#2').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 515 && $('#2').children()[0] === this.bonusRoundSandwich[0]) {
 
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
@@ -822,7 +822,7 @@ const theSandwichGame = {
 
     	}
 
-    	if(this.kingPosition.left === 355 && $('#3').children()[0] === this.bonusRoundSandwich[0]) {
+    	if(this.kingPosition.left === 355 && $('#3').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 615 && $('#3').children()[0] === this.bonusRoundSandwich[0]) {
 
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
@@ -830,7 +830,7 @@ const theSandwichGame = {
 
     	}
 
-    	if(this.kingPosition.left === 455 && $('#4').children()[0] === this.bonusRoundSandwich[0]) {
+    	if(this.kingPosition.left === 455 && $('#4').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 765.0000610351562 && $('#4').children()[0] === this.bonusRoundSandwich[0]) {
 
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
@@ -838,7 +838,7 @@ const theSandwichGame = {
 
     	}
 
-    	if(this.kingPosition.left === 555 && $('#5').children()[0] === this.bonusRoundSandwich[0]) {
+    	if(this.kingPosition.left === 555 && $('#5').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 865.0000610351562 && $('#5').children()[0] === this.bonusRoundSandwich[0]) {
 
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
@@ -846,7 +846,7 @@ const theSandwichGame = {
 
     	}
 
-    	if(this.kingPosition.left === 655 && $('#6').children()[0] === this.bonusRoundSandwich[0]) {
+    	if(this.kingPosition.left === 655 && $('#6').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 965.0000610351562 && $('#6').children()[0] === this.bonusRoundSandwich[0]) {
 
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
@@ -854,7 +854,7 @@ const theSandwichGame = {
 
     	}
 
-    	if(this.kingPosition.left === 755 && $('#7').children()[0] === this.bonusRoundSandwich[0]) {
+    	if(this.kingPosition.left === 755 && $('#7').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 1065 && $('#7').children()[0] === this.bonusRoundSandwich[0]) {
 
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()

@@ -21,6 +21,7 @@
 .stats {
 	margin-left: 10px;
 	color: orange;
+	font-weight: 900;
 }
 
 #user1-form{
@@ -83,7 +84,7 @@
 	text-align: center;
 	font-family: 'Press Start 2P', cursive;
 	font-weight: 900;	
-	color: white;
+	color: orange;
 }
 
 
@@ -129,6 +130,7 @@
 h1{
 	text-align: center;
 	font-family: 'Press Start 2P', cursive;
+	font-weight: 900;
 	color: orange;
 
 }
