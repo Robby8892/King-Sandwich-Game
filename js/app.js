@@ -88,7 +88,6 @@ const theSandwichGame = {
     theSandwich: null,
     ingredients: [],
     typeOfIngredients: [],
-    // choices: null,
     correct: false,
     name: null,
     timer: 30,
@@ -106,7 +105,6 @@ const theSandwichGame = {
     theKing: [],
     kingPosition: [],
     bonusRoundSandwich: [],
-    sandwichPostion: [],
 
     generateSandwich() {
 
@@ -117,8 +115,6 @@ const theSandwichGame = {
         this.theSandwich.name = this.typeOfSandwich[randomSandwich]
 
 
-
-        // this.chooseSandwich()
 
         this.theIngredients()
 
@@ -222,12 +218,8 @@ const theSandwichGame = {
             "background-size": "100%"
         })
 
-
-
         $('#user1-form').remove()
         $('#user2-form').remove()
-
-        //welcome user to the game, and give them instructions 
 
         $('<p class="messages"></p>').text("Welcome " + this.playerNames[0].name + " & " + this.playerNames[1].name + " to the Your Royal Sandwich Game").appendTo($('#game-dialouge')).fadeOut(8800)
         $('<p class="messages"></p>').text('You have been tasked with provding his Royal Highness a sandwich of his very desire!').appendTo($('#game-dialouge')).fadeOut(9000)
@@ -238,49 +230,12 @@ const theSandwichGame = {
 
         $("<p class='messages'></p>").text('What are the ingredients for a ' + this.theSandwich.name + " !").appendTo($('#game-dialouge')).fadeOut(11000)
 
-        // const input = prompt('Pick! (0/1)')
-        // if(input === '0'){
-        // 	this.choices = 0
-        // }if(input === '1'){
-        // 	this.choices = 1
-        // }
-
-        // this.generateSandwich()
-        // alert('Your sandwich is ' + this.theSandwich)
-
-
-        // $('<form id="recipe-form"></form>').appendTo($('#game-dialouge'))
-        // $('<input id="recipe-input" placeholder="Ingredients"></input>').appendTo($('#recipe-form'))
-        // $('<button id="recipe-button">Enter</button>').appendTo($('#recipe-form'))
-
 
         this.theInterval()
 
         this.printIngredients()
 
         this.checkPlayerRound()
-
-
-
-        // this.printStats()
-        // setTimeout(this.theInterval, 3000)
-        // this.printStats()
-
-        // console.log(setTimeout(this.theInterval, 1000));
-
-        // console.log(setTimeout);
-
-        // console.log(this.theInterval);
-
-
-        // console.log(setTimeout(this.theInterval, 1000));
-
-        // setTimeout(this.printIngredients, 1000)
-
-        // setTimeout(this.checkPlayerRound, 1000)
-
-
-
 
     },
 
@@ -304,15 +259,11 @@ const theSandwichGame = {
 
                 this.ingredients[i].click = true
 
-
                 this.verifyAllWereClicked($userInput)
 
             }
-            // if all of the correct ingredients are moved then the user receives a completed sandwich 
 
         }
-
-
 
 
         if (this.correct === true) {
@@ -322,116 +273,66 @@ const theSandwichGame = {
 
             $("<p class='messages'></p>").text("You made a " + this.theSandwich.name).appendTo('#game-dialouge').fadeOut(10000)
 
-
             this.printSandwich()
             this.tallyPoints()
             this.clearTheInterval()
             this.printStats()
             this.resetRound()
             this.bonusRound()
+            
 
 
 
         }
 
-        // const input = prompt("What is one the of the ingredients?")
-        // if(input === this.typeOfIngredients.ingredient1 || input === this.typeOfIngredients.ingredient2 || input === this.typeOfIngredients.ingredient3){
-        // 	this.correct = true
-        // 	console.log('that\'s right');
-        // }
-        // else if(input !== this.typeOfIngredients.ingredient1 || input !== this.typeOfIngredients.ingredient2 || input !== this.typeOfIngredients.ingredient3){
-        // 	alert('that\'s not right' );
-        // 	this.test2()
-
-        // https://cdn.apps.joltteam.com/brikbuild/sandwich-pixel-art-8bit-bread-brik-bin-finger-food-food-pixel-pixel-art-sandwich-5a24f9b6f6c96a8d2972098a.brickImg.jpg
     },
 
-    // player2Round($userInput) {
-
-    // 	const nameOfIngre = $userInput.data().whichIngredient
-
-    // 	console.log(nameOfIngre + ' player2');
-
-    // 	for(let i = 0; i < this.ingredients.length; i++) { 
-
-    // 		if(nameOfIngre === this.ingredients[i].ingredient){
-
-    // 			$("<p class='messages'></p>").text("Good job that is a correct ingredient for a " + this.theSandwich).appendTo('#game-dialouge').fadeOut(1000)
-
-    // 			$userInput.remove()	
-
-    // 			this.ingredients[i].click = true
-
-    // 			this.verifyAllWereClicked($userInput)
-
-    // 		}	
-    // 		// if all of the correct ingredients are moved then the user receives a completed sandwich 
-
-    // 	}
-
-
-    // 	if(this.correct === true) {
-
-    // 		$('.player').remove()
-    // 		$('.messages').remove()
-
-    // 		$("<p class='messages'></p>").text("You made a " + this.theSandwich).appendTo('#game-dialouge').fadeOut(10000)
-
-
-    // 		this.printSandwich()
-    // 		this.clearTheInterval()
-    // 		this.player2Score ++
-    // 		this.printStats()
-    // 		this.resetRound()
-    // 		this.newRound()
-    // 		this.checkPlayerRound()
-
-
-    // 	}
-
-    // 	if(this.timer > 0 ){
-
-    // 		this.checkTimer()
-
-    // 	}
-
-    // 	// const input = prompt("What is one the of the ingredients?")
-    // 	// if(input === this.typeOfIngredients.ingredient1 || input === this.typeOfIngredients.ingredient2 || input === this.typeOfIngredients.ingredient3){
-    // 	// 	this.correct = true
-    // 	// 	console.log('that\'s right');
-    // 	// }
-    // 	// else if(input !== this.typeOfIngredients.ingredient1 || input !== this.typeOfIngredients.ingredient2 || input !== this.typeOfIngredients.ingredient3){
-    // 	// 	alert('that\'s not right' );
-    // 	// 	this.test2()
-
-    // 	// https://cdn.apps.joltteam.com/brikbuild/sandwich-pixel-art-8bit-bread-brik-bin-finger-food-food-pixel-pixel-art-sandwich-5a24f9b6f6c96a8d2972098a.brickImg.jpg
-
-
-
-
-    // },
-
-
-
-
+ 
     printSandwich() {
 
         if (this.theSandwich.name === 'pb&j&j') {
 
-        	this.bonusRoundSandwich = $('<img class="sandwich" src= "photo/pbjj.png">')
+        	const pbj = $('<img class="sandwich" src= "photo/pbjj.png">')
+
+        	console.log(pbj);
+
+        	this.bonusRoundSandwich.push(pbj[0])
+
+        	console.log(this.bonusRoundSandwich);
         }
 
         if (this.theSandwich.name === 'blt') {
-           	this.bonusRoundSandwich = $('<img class="sandwich" src= "photo/blt.png">')
+
+           	const blt = $('<img class="sandwich" src= "photo/blt.png">')
+
+           	console.log(blt);
+
+           	this.bonusRoundSandwich.push(blt[0])
+
+           	console.log(this.bonusRoundSandwich);
 
         }
 
         if (this.theSandwich.name === 'reuben') {
-            this.bonusRoundSandwich = $('<img class="sandwich" src= "photo/reuben.png">')
+
+            const reuben = $('<img class="sandwich" src= "photo/reuben.png">')
+
+            console.log(reuben);
+
+            this.bonusRoundSandwich.push(reuben[0]) 
+
+            console.log(this.bonusRoundSandwich);
         }
 
         if (this.theSandwich.name === 'turkeyclub') {
-            this.bonusRoundSandwich = $('<img class="sandwich" src= "photo/turkeyclub.png">')
+
+            const turkeyClub = $('<img class="sandwich" src= "photo/turkeyclub.png">')
+
+            console.log(turkeyClub);
+
+            this.bonusRoundSandwich.push(turkeyClub[0])
+
+            console.log(this.bonusRoundSandwich);
         }
     },
 
@@ -506,49 +407,45 @@ const theSandwichGame = {
         $('<div><div>').attr('id', this.typeOfIngredients.ingredient2).appendTo('#ingredients-container')
         $('<div><div>').attr('id', this.typeOfIngredients.ingredient3).appendTo('#ingredients-container')
 
-    },
+    // },
 
 
 
-    printBadIngredients() {
+    // printBadIngredients() {
 
-        $('<div><div>').attr('id', this.badIngredient[this.randomImg].img).appendTo('#bad-ingredients')
-        $('<div><div>').attr('id', this.badIngredient[this.randomImg].img).appendTo('#bad-ingredients')
-        $('<div><div>').attr('id', this.badIngredient[this.randomImg].img).appendTo('#bad-ingredients')
-
-
-    },
+    //     $('<div><div>').attr('id', this.badIngredient[this.randomImg].img).appendTo('#bad-ingredients')
+    //     $('<div><div>').attr('id', this.badIngredient[this.randomImg].img).appendTo('#bad-ingredients')
+    //     $('<div><div>').attr('id', this.badIngredient[this.randomImg].img).appendTo('#bad-ingredients')
 
 
-    createBadIngredients() {
-
-        const badIngredient1 = new Badrecipe()
-        const badIngredient2 = new Badrecipe()
-        const badIngredient3 = new Badrecipe()
-        const badIngredient4 = new Badrecipe()
-        const badIngredient5 = new Badrecipe()
-        const badIngredient6 = new Badrecipe()
-
-        this.badIngredient.push(badIngredient1)
-        this.badIngredient.push(badIngredient2)
-        this.badIngredient.push(badIngredient3)
-        this.badIngredient.push(badIngredient4)
-        this.badIngredient.push(badIngredient5)
-        this.badIngredient.push(badIngredient6)
-
-        this.badIngredient[0].img = $('<img class="ingredients" src="photo/shoe.png">')
-        this.badIngredient[1].img = $('<img class="ingredients" src="photo/moldycheese.png">')
-        this.badIngredient[2].img = $('<img class="ingredients" src="photo/peanut.png">')
-        this.badIngredient[3].img = $('<img class="ingredients" src="photo/oldbacon.png">')
-        this.badIngredient[4].img = $('<img class="ingredients" src="photo/tortilla.png">')
-        this.badIngredient[5].img = $('<img class="ingredients" src="photo/nutella.png">')
+    // },
 
 
-        this.randomImg = Math.floor(Math.random() * this.badIngredient.length)
+    // createBadIngredients() {
 
-        console.log(Math.floor(Math.random() * this.badIngredient.length));
+    //     const badIngredient1 = new Badrecipe()
+    //     const badIngredient2 = new Badrecipe()
+    //     const badIngredient3 = new Badrecipe()
+    //     const badIngredient4 = new Badrecipe()
+    //     const badIngredient5 = new Badrecipe()
+    //     const badIngredient6 = new Badrecipe()
+
+    //     this.badIngredient.push(badIngredient1)
+    //     this.badIngredient.push(badIngredient2)
+    //     this.badIngredient.push(badIngredient3)
+    //     this.badIngredient.push(badIngredient4)
+    //     this.badIngredient.push(badIngredient5)
+    //     this.badIngredient.push(badIngredient6)
+
+    //     this.badIngredient[0].img = $('<img class="ingredients" src="photo/shoe.png">')
+    //     this.badIngredient[1].img = $('<img class="ingredients" src="photo/moldycheese.png">')
+    //     this.badIngredient[2].img = $('<img class="ingredients" src="photo/peanut.png">')
+    //     this.badIngredient[3].img = $('<img class="ingredients" src="photo/oldbacon.png">')
+    //     this.badIngredient[4].img = $('<img class="ingredients" src="photo/tortilla.png">')
+    //     this.badIngredient[5].img = $('<img class="ingredients" src="photo/nutella.png">')
 
 
+    //     this.randomImg = Math.floor(Math.random() * this.badIngredient.length)
 
 
     },
@@ -566,8 +463,6 @@ const theSandwichGame = {
 
     },
     theInterval() {
-
-
 
         this.interval = setInterval(() => {
 
@@ -626,8 +521,6 @@ const theSandwichGame = {
 
         }
 
-        // if(this.round > 2 && this.round < 4)
-
 
     },
 
@@ -635,6 +528,7 @@ const theSandwichGame = {
 
         this.correct = false
         this.timer = 30
+        this.bonusScore = 0
         this.ingredients.splice(0, 3)
 
         for (let i = 0; i < this.ingredients.length; i++) {
@@ -762,20 +656,19 @@ const theSandwichGame = {
 
 
     },
+
     bonusRound() {
 
     	$('html').css({
         	'background-image': 'url(https://cdn.wallpapersafari.com/79/31/KOoJ2e.png)',
             "background-size": "100%"
         })
-    	this.generateSandwich()
-    	this.printSandwich()
+
+
     	this.setIntervalBonusRound()
     	this.createKing()
     	this.createGameBoard()
     	this.checkPostion()
-
-
 
 
     },
@@ -789,17 +682,10 @@ const theSandwichGame = {
 
     this.king.appendTo('#king')
 
-    // this.movementOfKing()
-
     },
 
     movementOfKing($userInput) {
 
-
-
-    	console.log($('#king-char'));
-
-    	console.log($userInput[0]);
 
     	if($userInput[0] === 119) {
 
@@ -862,16 +748,10 @@ const theSandwichGame = {
 
     	const ranNum = Math.floor(Math.random() * 8)
 
-    	console.log(this.bonusRoundSandwich[0]);
+    	console.log($gameBoard[0]);
 
-    	console.log($gameBoard);
-
-    	console.log($gameBoard.get()[0]);
-
-    	$gameBoard[ranNum].append(this.bonusRoundSandwich[0])
+		($gameBoard[ranNum]).append(this.bonusRoundSandwich[0])
     
-
-
     },
 
     createGameBoard() {
@@ -895,7 +775,7 @@ const theSandwichGame = {
     	
     	if(this.playerTurn === this.playerNames[1].name) {
 
-    		this.player1Score += this.bonusScore
+    		this.player2Score += this.bonusScore
     		this.printStats()
     		
     	}
@@ -906,14 +786,16 @@ const theSandwichGame = {
 
     returnToGame() {
 
-    	
+    	this.resetRound()
+    	this.clearBonusRound()
+    	this.newRound()
+
+
 
 
     },
 
     checkPostion() {
-
-    	
 
 
     	if(this.kingPosition.left === 5 && $('#0').children()[0] === this.bonusRoundSandwich[0]) {
@@ -997,7 +879,8 @@ const theSandwichGame = {
             if (this.timer <= 0) {
 
             	this.tallyBounsRound()
-                this.checkTimer()
+            	this.clearTheInterval()
+         		this.returnToGame()
 
             }
 
@@ -1054,7 +937,21 @@ const theSandwichGame = {
         }
 
 
-    }
+    },
+
+    clearBonusRound() {
+
+    	$('#king-char').remove()
+    	$('.bonus-game').remove()
+    	this.bonusRoundSandwich.splice(0,1)
+
+
+     	$('html').css({
+        	'background-image': 'url(https://cdna.artstation.com/p/assets/images/images/007/419/268/large/connor-wakes-conwak-sotn.jpg?1506008314)',
+         	"background-size": "100%"
+        	})
+
+    	}
 
 }
 
@@ -1111,7 +1008,7 @@ $('body').on('keypress', (e) => {
 
 })
 
-// theSandwichGame.bonusRound()
+
 
 
 
