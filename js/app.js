@@ -102,7 +102,11 @@ const theSandwichGame = {
     playerNames: [],
     randomImg: null,
     timerPoints: 0,
+    bonusScore: 0,
     theKing: [],
+    kingPosition: [],
+    bonusRoundSandwich: [],
+    sandwichPostion: [],
 
     generateSandwich() {
 
@@ -324,7 +328,7 @@ const theSandwichGame = {
             this.clearTheInterval()
             this.printStats()
             this.resetRound()
-            this.newRound()
+            this.bonusRound()
 
 
 
@@ -414,31 +418,20 @@ const theSandwichGame = {
 
         if (this.theSandwich.name === 'pb&j&j') {
 
-            $('<img src= "photo/pbjj.png">').css({
-                'height': '150px',
-                'margin-top': '250px'
-            }).appendTo($('#sandwich')).fadeOut(1000)
+        	this.bonusRoundSandwich = $('<img class="sandwich" src= "photo/pbjj.png">')
         }
 
         if (this.theSandwich.name === 'blt') {
-            $('<img src= "photo/blt.png">').css({
-                'height': '150px',
-                'margin-top': '250px'
-            }).appendTo($('#sandwich')).fadeOut(1000)
+           	this.bonusRoundSandwich = $('<img class="sandwich" src= "photo/blt.png">')
+
         }
 
         if (this.theSandwich.name === 'reuben') {
-            $('<img src= "photo/reuben.png">').css({
-                'height': '150px',
-                'margin-top': '250px'
-            }).appendTo($('#sandwich')).fadeOut(1000)
+            this.bonusRoundSandwich = $('<img class="sandwich" src= "photo/reuben.png">')
         }
 
         if (this.theSandwich.name === 'turkeyclub') {
-            $('<img src= "photo/turkeyclub.png">').css({
-                'height': '150px',
-                'margin-top': '250px'
-            }).appendTo($('#sandwich')).fadeOut(1000)
+            this.bonusRoundSandwich = $('<img class="sandwich" src= "photo/turkeyclub.png">')
         }
     },
 
@@ -574,10 +567,10 @@ const theSandwichGame = {
     },
     theInterval() {
 
-        // console.log("this when I call  theInterval");
+
 
         this.interval = setInterval(() => {
-            // console.log("this is inside the interval");
+
             
             this.timer--
 
@@ -723,7 +716,7 @@ const theSandwichGame = {
         if (this.turn === false) {
 
 
-            $('<p class="player"></p>').text(this.playerNames[0].name + ' turn').appendTo('#game-dialouge')
+            $('<p class="player"></p>').text("It's " + this.playerNames[0].name + '\'s turn').appendTo('h2')
             this.turn = !this.turn
             this.playerTurn = this.playerNames[0].name
 
@@ -733,7 +726,7 @@ const theSandwichGame = {
 
         if (this.turn === true) {
 
-            $('<p class="player"></p>').text(this.playerNames[1].name + ' turn').appendTo('#game-dialouge')
+            $('<p class="player"></p>').text("It's " + this.playerNames[1].name + '\'s turn').appendTo('h2')
 
             this.turn = !this.turn
             this.playerTurn = this.playerNames[1].name
@@ -775,6 +768,13 @@ const theSandwichGame = {
         	'background-image': 'url(https://cdn.wallpapersafari.com/79/31/KOoJ2e.png)',
             "background-size": "100%"
         })
+    	this.generateSandwich()
+    	this.printSandwich()
+    	this.setIntervalBonusRound()
+    	this.createKing()
+    	this.createGameBoard()
+    	this.checkPostion()
+
 
 
 
@@ -783,54 +783,122 @@ const theSandwichGame = {
     createKing() {
 
 
-    	$('<img id="king-char" src="source-images/kingeating.png">').appendTo('#5')
+    this.king = $('<img id="king-char" src="source-images/kingeating.png">')
+
+    console.log(this.king);
+
+    this.king.appendTo('#king')
+
+    // this.movementOfKing()
 
     },
 
     movementOfKing($userInput) {
 
-    	// this.createKing()
+
 
     	console.log($('#king-char'));
+
+    	console.log($userInput[0]);
 
     	if($userInput[0] === 119) {
 
     		// console.log('You got it');
-    		$('#king-char').css('position','right')
+    		$('#king-char').css('margin-top', '-=50px')
+    		console.log(this.kingPosition.left);
+    		this.kingPosition = $('#king-char').offset()
+    		console.log($('#sandwich').position().left);
+    		console.log($('#sandwich').offset().left)
+
+    		this.checkPostion()
 
     	}
 
-    	if($userInput ==='s' ) {
+    	if($userInput[0] === 100 ) {
 
-    		$('#king-char')
+    		$('#king-char').css({'margin-left': '+=50px',
+    			'margin-right': '-=50px',
+    			'transform': 'scaleX(1)'	})
+
+    		this.kingPosition = $('#king-char').offset()
+    		console.log(this.kingPosition.left);
+    		console.log($('#sandwich').position().left);
+    		console.log($('#sandwich').offset().left)
+    		this.checkPostion()
+
     	}
 
-    	if($userInput === 'a') {
+    	if($userInput[0] === 97) {
 
-    		$('#king-char')
+    		$('#king-char').css({'margin-right': '+=50px',
+    			'margin-left': '-=50px',
+				'transform': 'scaleX(-1)'	})
+
+    		this.kingPosition = $('#king-char').offset()
+    		console.log(this.kingPosition.left);
+    		console.log($('#sandwich').position().left);	
+    		console.log($('#sandwich').offset().left)
+    		this.checkPostion()
+
+
     	}
 
-    	if($userInput === 'd') {
+    	if($userInput[0] === 115) {
 
-    		$('#king-char')
+    		$('#king-char').css('margin-top', '+=50px')
+
+    		this.kingPosition = $('#king-char').offset()
+    		console.log(this.kingPosition.left);
+    		console.log($('#sandwich').position().left);
+    		console.log($('#sandwich').offset().left)	
+    		this.checkPostion()
+
     	}
     },
 
     createMultipleSandwiches() {
+
+    	const $gameBoard = $('.bonus-game')
+
+    	const ranNum = Math.floor(Math.random() * 8)
+
+    	console.log(this.bonusRoundSandwich[0]);
+
+    	console.log($gameBoard);
+
+    	console.log($gameBoard.get()[0]);
+
+    	$gameBoard[ranNum].append(this.bonusRoundSandwich[0])
+    
 
 
     },
 
     createGameBoard() {
 
-    	for(let i = 0; i < 133; i++) {
-    		$('<div class="bonus-game">This is a div</div>').appendTo('#the-game-container').attr('id', i)
+    	for(let i = 0; i < 8; i++) {
+    		$('<div class="bonus-game"></div>').appendTo('#the-game-container').attr('id', i)
     	}
 
+    	this.createMultipleSandwiches()
 
     },
 
     tallyBounsRound() {
+
+    	if(this.playerTurn === this.playerNames[0].name) {
+
+    		this.player1Score += this.bonusScore
+    		this.printStats()
+    		
+    	}
+    	
+    	if(this.playerTurn === this.playerNames[1].name) {
+
+    		this.player1Score += this.bonusScore
+    		this.printStats()
+    		
+    	}
 
 
     },
@@ -838,6 +906,102 @@ const theSandwichGame = {
 
     returnToGame() {
 
+    	
+
+
+    },
+
+    checkPostion() {
+
+    	
+
+
+    	if(this.kingPosition.left === 5 && $('#0').children()[0] === this.bonusRoundSandwich[0]) {
+
+    		$('.sandwich').remove()
+    		this.createMultipleSandwiches()
+    		this.bonusScore += 10
+
+    	}
+
+    	if(this.kingPosition.left === 105 && $('#1').children()[0] === this.bonusRoundSandwich[0]) {
+
+    		$('.sandwich').remove()
+    		this.createMultipleSandwiches()
+    		this.bonusScore += 10
+
+    	}
+
+    	if(this.kingPosition.left === 255 && $('#2').children()[0] === this.bonusRoundSandwich[0]) {
+
+    		$('.sandwich').remove()
+    		this.createMultipleSandwiches()
+    		this.bonusScore += 10
+
+    	}
+
+    	if(this.kingPosition.left === 355 && $('#3').children()[0] === this.bonusRoundSandwich[0]) {
+
+    		$('.sandwich').remove()
+    		this.createMultipleSandwiches()
+    		this.bonusScore += 10
+
+    	}
+
+    	if(this.kingPosition.left === 455 && $('#4').children()[0] === this.bonusRoundSandwich[0]) {
+
+    		$('.sandwich').remove()
+    		this.createMultipleSandwiches()
+    		this.bonusScore += 10
+
+    	}
+
+    	if(this.kingPosition.left === 555 && $('#5').children()[0] === this.bonusRoundSandwich[0]) {
+
+    		$('.sandwich').remove()
+    		this.createMultipleSandwiches()
+    		this.bonusScore += 10
+
+    	}
+
+    	if(this.kingPosition.left === 655 && $('#6').children()[0] === this.bonusRoundSandwich[0]) {
+
+    		$('.sandwich').remove()
+    		this.createMultipleSandwiches()
+    		this.bonusScore += 10
+
+    	}
+
+    	if(this.kingPosition.left === 755 && $('#7').children()[0] === this.bonusRoundSandwich[0]) {
+
+    		$('.sandwich').remove()
+    		this.createMultipleSandwiches()
+    		this.bonusScore += 10
+
+    	}
+
+    },
+
+    setIntervalBonusRound() {
+
+    	this.timer = 60
+
+    	this.interval = setInterval(() => {
+
+            
+            this.printStats()
+            this.timer--
+
+            $('#timer').text(this.timer)
+
+            if (this.timer <= 0) {
+
+            	this.tallyBounsRound()
+                this.checkTimer()
+
+            }
+
+        }, 400)
 
 
 
@@ -937,23 +1101,19 @@ $('#ingredients-container').on('click', (e) => {
 
 })
 
-// $('body').on('keypress', (e) => {
+$('body').on('keypress', (e) => {
 
-// 	const $userInput = $(e.keyCode)
+	const $userInput = $(e.keyCode)
 
-// 	console.log($userInput);
+	console.log($userInput);
 
-// 	theSandwichGame.movementOfKing($userInput)
+	theSandwichGame.movementOfKing($userInput)
 
-// })
+})
 
-//   	$('html').css({
-//         	'background-image': 'url(https://cdn.wallpapersafari.com/79/31/KOoJ2e.png)',
-//             "background-size": "100%"
-//         })
+// theSandwichGame.bonusRound()
 
-//   	theSandwichGame.createGameBoard()
-//   	theSandwichGame.createKing()
+
 
 
 // here my event listener will live that needs to be checking for user input to start the game
