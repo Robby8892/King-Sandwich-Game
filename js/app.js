@@ -14,28 +14,6 @@ class Sandwich {
         this.bread = false
 
     }
-
-    // reuben() {
-
-    // 	this.name = 'reuben'
-
-    // }
-
-    // blt() {
-    // 	this.name = 'blt'
-
-    // }
-
-    // pbjj() {
-    // 	this.name = 'pb&j&j'
-
-    // }
-
-    // turkeyClub() {
-
-    // 	this.name = 'turkeyclub'
-
-    // }
 }
 
 
@@ -51,7 +29,6 @@ class Recipe {
         this.click = true
 
     }
-
 
 }
 
@@ -585,25 +562,19 @@ const theSandwichGame = {
     createPlayer1(user1Input, ) {
 
 
-        const player1 = new Player()
+        const player1 = new Player(name=user1Input.value, hasName=true)
 
         this.playerNames.push(player1)
 
-        this.playerNames[0].name = user1Input.value
-
-        this.playerNames[0].hasName = true
+        this.verifyTwoPlayers()
 
     },
 
     createPlayer2(user2Input) {
 
-        const player2 = new Player()
+        const player2 = new Player(name=user2Input, hasName=true)
 
         this.playerNames.push(player2)
-
-        this.playerNames[1].name = user2Input.value
-
-        this.playerNames[1].hasName = true
 
         this.verifyTwoPlayers()
 
