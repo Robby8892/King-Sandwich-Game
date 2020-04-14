@@ -768,7 +768,7 @@ const theSandwichGame = {
     checkPostion() {
 
 
-    	if(this.kingPosition.left === 5 && $('#0').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 315 && $('#0').children()[0] === this.bonusRoundSandwich[0]) {
+    	if(this.kingPosition.left === 5 && $('#0').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 235 && $('#0').children()[0] === this.bonusRoundSandwich[0]) {
 
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
@@ -776,7 +776,7 @@ const theSandwichGame = {
 
     	}
 
-    	if(this.kingPosition.left === 105 && $('#1').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 415.0000305175781 && $('#1').children()[0] === this.bonusRoundSandwich[0]) {
+    	if(this.kingPosition.left === 105 && $('#1').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 385 && $('#1').children()[0] === this.bonusRoundSandwich[0]) {
 
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
@@ -784,7 +784,7 @@ const theSandwichGame = {
 
     	}
 
-    	if(this.kingPosition.left === 255 && $('#2').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 515 && $('#2').children()[0] === this.bonusRoundSandwich[0]) {
+    	if(this.kingPosition.left === 255 && $('#2').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 485 && $('#2').children()[0] === this.bonusRoundSandwich[0]) {
 
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
@@ -792,7 +792,7 @@ const theSandwichGame = {
 
     	}
 
-    	if(this.kingPosition.left === 355 && $('#3').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 615 && $('#3').children()[0] === this.bonusRoundSandwich[0]) {
+    	if(this.kingPosition.left === 355 && $('#3').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 585 && $('#3').children()[0] === this.bonusRoundSandwich[0]) {
 
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
@@ -800,7 +800,7 @@ const theSandwichGame = {
 
     	}
 
-    	if(this.kingPosition.left === 455 && $('#4').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 765.0000610351562 && $('#4').children()[0] === this.bonusRoundSandwich[0]) {
+    	if(this.kingPosition.left === 455 && $('#4').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 685 && $('#4').children()[0] === this.bonusRoundSandwich[0]) {
 
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
@@ -808,7 +808,7 @@ const theSandwichGame = {
 
     	}
 
-    	if(this.kingPosition.left === 555 && $('#5').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 865.0000610351562 && $('#5').children()[0] === this.bonusRoundSandwich[0]) {
+    	if(this.kingPosition.left === 555 && $('#5').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 785 && $('#5').children()[0] === this.bonusRoundSandwich[0]) {
 
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
@@ -816,7 +816,7 @@ const theSandwichGame = {
 
     	}
 
-    	if(this.kingPosition.left === 655 && $('#6').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 965.0000610351562 && $('#6').children()[0] === this.bonusRoundSandwich[0]) {
+    	if(this.kingPosition.left === 655 && $('#6').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 885 && $('#6').children()[0] === this.bonusRoundSandwich[0]) {
 
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
@@ -824,7 +824,7 @@ const theSandwichGame = {
 
     	}
 
-    	if(this.kingPosition.left === 755 && $('#7').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 1065 && $('#7').children()[0] === this.bonusRoundSandwich[0]) {
+    	if(this.kingPosition.left === 755 && $('#7').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 985 && $('#7').children()[0] === this.bonusRoundSandwich[0]) {
 
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
