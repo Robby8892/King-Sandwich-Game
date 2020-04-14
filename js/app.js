@@ -9,7 +9,6 @@ console.log("King Sandwich Game");
 
 class Sandwich {
     constructor(name, bread=false) {
-<button id="user-button">Enter</button>
         this.name = name
         this.bread = bread
 
@@ -198,8 +197,7 @@ const theSandwichGame = {
             "background-size": "100%"
         })
 
-        $('#user1-form').remove()
-        $('#user2-form').remove()
+        $('.user-form').remove()
         $('#button-mapping').remove()
         $('.intro').remove()
 
@@ -579,16 +577,6 @@ const theSandwichGame = {
 
     },
 
-    // createPlayer2(user2Input) {
-
-    //     const player2 = new Player(name=user2Input, hasName=true)
-
-    //     this.playerNames.push(player2)
-
-    //     this.verifyTwoPlayers()
-
-    // },
-
     checkPlayerRound() {
 
         if (this.turn === false) {
@@ -937,36 +925,6 @@ const theSandwichGame = {
 
 }
 
-// $('#user1-form').on('submit', (e) => {
-
-
-//     e.preventDefault()
-
-//     const input = $('#user1-input')
-
-//     const user1Input = input[0]
-
-//     console.log(user1Input.value);
-
-//     theSandwichGame.createPlayer1(user1Input)
-
-// })
-
-
-// $('#user2-form').on('submit', (e) => {
-//     console.log('hello, on from2')
-//     e.preventDefault()
-
-//     const input = $('#user2-input')
-
-//     const user2Input = input[0]
-
-//     console.log(user2Input.value);
-
-//     theSandwichGame.createPlayer2(user2Input)
-
-// })
-
 
 $('.user-form').on('submit', (e) => {
     e.preventDefault()
@@ -985,27 +943,27 @@ $('.user-form').on('submit', (e) => {
     }
 })
 
-// $('#ingredients-container').on('click', (e) => {
+$('#ingredients-container').on('click', (e) => {
 
 
-//     const $userInput = $(e.target)
+    const $userInput = $(e.target)
 
-//     theSandwichGame.playerRound($userInput)
-
-
+    theSandwichGame.playerRound($userInput)
 
 
-// })
 
-// $('body').on('keypress', (e) => {
 
-// 	const $userInput = $(e.keyCode)
+})
 
-// 	console.log($userInput);
+$('body').on('keypress', (e) => {
 
-// 	theSandwichGame.movementOfKing($userInput)
+	const $userInput = $(e.keyCode)
 
-// })
+	console.log($userInput);
+
+	theSandwichGame.movementOfKing($userInput)
+
+})
 
 
 
