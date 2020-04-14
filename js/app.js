@@ -103,46 +103,27 @@ const theSandwichGame = {
     },
     theIngredients() {
 
-
-
-        if (this.theSandwich.name === "blt") {
+        if (this.theSandwich.name === 'blt') {
 
             this.theSandwich.bread = true
             this.typeOfIngredients.ingredient1 = 'bacon'
             this.typeOfIngredients.ingredient2 = 'lettuce'
             this.typeOfIngredients.ingredient3 = 'tomato'
 
-            const bacon = new Recipe()
-            const tomato = new Recipe()
-            const lettuce = new Recipe()
+            const blt = new Recipe('bacon','lettuce','tomato')
+            this.ingredients.push(blt)
+            
 
-            bacon.ingredient = 'bacon'
-            tomato.ingredient = 'tomato'
-            lettuce.ingredient = 'lettuce'
-
-            this.ingredients.push(bacon)
-            this.ingredients.push(tomato)
-            this.ingredients.push(lettuce)
-
-        } else if (this.theSandwich.name === "pb&j&j") {
+        } else if (this.theSandwich.name === 'pb&j&j') {
 
             this.theSandwich.bread = true
             this.typeOfIngredients.ingredient1 = 'peanutbutter'
             this.typeOfIngredients.ingredient2 = 'jelly'
             this.typeOfIngredients.ingredient3 = 'jam'
 
+            const pbjj = new Recipe('peanutbutter','jelly','jam')
+            this.ingredients.push(pbjj)
 
-            const peanutbutter = new Recipe()
-            const jelly = new Recipe()
-            const jam = new Recipe()
-
-            peanutbutter.ingredient = 'peanutbutter'
-            jelly.ingredient = 'jelly'
-            jam.ingredient = 'jam'
-
-            this.ingredients.push(peanutbutter)
-            this.ingredients.push(jelly)
-            this.ingredients.push(jam)
         } else if (this.theSandwich.name === "reuben") {
 
             this.theSandwich.bread = true
@@ -150,18 +131,9 @@ const theSandwichGame = {
             this.typeOfIngredients.ingredient2 = 'swisscheese'
             this.typeOfIngredients.ingredient3 = 'sauerkraut'
 
+            const reuben = new Recipe('cornedbeef','swisscheese','sauerkraut')
+            this.ingredients.push(reuben)
 
-            const cornedBeef = new Recipe()
-            const swissCheese = new Recipe()
-            const sauerkraut = new Recipe()
-
-            cornedBeef.ingredient = 'cornedbeef'
-            swissCheese.ingredient = 'swisscheese'
-            sauerkraut.ingredient = 'sauerkraut'
-
-            this.ingredients.push(cornedBeef)
-            this.ingredients.push(swissCheese)
-            this.ingredients.push(sauerkraut)
         } else if (this.theSandwich.name === 'turkeyclub') {
 
             this.theSandwich.bread = true
@@ -169,21 +141,8 @@ const theSandwichGame = {
             this.typeOfIngredients.ingredient2 = 'mayo'
             this.typeOfIngredients.ingredient3 = 'lettucetomato'
 
-
-            const ham = new Recipe()
-            const mayo = new Recipe()
-            const lettuceTomato = new Recipe()
-
-            ham.ingredient = 'ham'
-            mayo.ingredient = 'mayo'
-            lettuceTomato.ingredient = 'lettucetomato'
-
-            this.ingredients.push(ham)
-            this.ingredients.push(mayo)
-            this.ingredients.push(lettuceTomato)
-
-
-
+            const turkeyClub = new Recipe('ham','mayo','lettucetomato')
+            this.ingredients.push(turkeyClub)
 
         }
 
@@ -328,10 +287,10 @@ const theSandwichGame = {
             this.createIngredients()
 
             // this.badIngredient[this.randomImg].img.appendTo('#bad-ingredients')
-            $('<img class="ingredients" src="photo/bacon.png">').appendTo('#bacon').css('width', '40%').attr('data-which-ingredient', this.ingredients[0].ingredient)
-            $('<img class="ingredients" src="photo/tomato.png">').appendTo('#tomato').attr('data-which-ingredient', this.ingredients[1].ingredient)
+            $('<img class="ingredients" src="photo/bacon.png">').appendTo('#bacon').css('width', '40%').attr('data-which-ingredient', this.ingredients[0].ingredient1)
             // this.badIngredient[this.randomImg].img.appendTo('#bad-ingredients')	
-            $('<img class="ingredients" src="photo/lettuce.png">').appendTo('#lettuce').attr('data-which-ingredient', this.ingredients[2].ingredient)
+            $('<img class="ingredients" src="photo/lettuce.png">').appendTo('#lettuce').attr('data-which-ingredient', this.ingredients[0].ingredient2)
+            $('<img class="ingredients" src="photo/tomato.png">').appendTo('#tomato').attr('data-which-ingredient', this.ingredients[0].ingredient3)
             // this.badIngredient[this.randomImg].img.appendTo('#bad-ingredients')
 
         }
@@ -340,11 +299,11 @@ const theSandwichGame = {
 
             this.createIngredients()
 
-            $('<img class="ingredients" src="photo/peanutbutter.png">').appendTo('#peanutbutter').attr('data-which-ingredient', this.ingredients[0].ingredient)
+            $('<img class="ingredients" src="photo/peanutbutter.png">').appendTo('#peanutbutter').attr('data-which-ingredient', this.ingredients[0].ingredient1)
             // this.badIngredient[this.randomImg].img.appendTo('#bad-ingredients')
-            $('<img class="ingredients" src="photo/jam.png">').appendTo('#jelly').attr('data-which-ingredient', this.ingredients[1].ingredient)
+            $('<img class="ingredients" src="photo/jam.png">').appendTo('#jelly').attr('data-which-ingredient', this.ingredients[0].ingredient2)
             // this.badIngredient[this.randomImg].img.appendTo('#bad-ingredients')
-            $('<img class="ingredients" src="photo/jam2.png">').appendTo('#jam').attr('data-which-ingredient', this.ingredients[2].ingredient)
+            $('<img class="ingredients" src="photo/jam2.png">').appendTo('#jam').attr('data-which-ingredient', this.ingredients[0].ingredient3)
             // this.badIngredient[this.randomImg].img.appendTo('#bad-ingredients')
 
 
@@ -355,11 +314,11 @@ const theSandwichGame = {
             this.createIngredients()
 
 
-            $('<img class="ingredients" src="photo/cornedbeef.png">').appendTo('#cornedbeef').attr('data-which-ingredient', this.ingredients[0].ingredient)
-            $('<img class="ingredients" src="photo/swisscheese.png">').appendTo('#swisscheese').attr('data-which-ingredient', this.ingredients[1].ingredient)
+            $('<img class="ingredients" src="photo/cornedbeef.png">').appendTo('#cornedbeef').attr('data-which-ingredient', this.ingredients[0].ingredient1)
+            $('<img class="ingredients" src="photo/swisscheese.png">').appendTo('#swisscheese').attr('data-which-ingredient', this.ingredients[0].ingredient2)
             // this.badIngredient[this.randomImg].img.appendTo('#bad-ingredients')
             // this.badIngredient[this.randomImg].img.appendTo('#bad-ingredients')
-            $('<img class="ingredients" src="photo/sauerkraut.png">').appendTo('#sauerkraut').attr('data-which-ingredient', this.ingredients[2].ingredient)
+            $('<img class="ingredients" src="photo/sauerkraut.png">').appendTo('#sauerkraut').attr('data-which-ingredient', this.ingredients[0].ingredient3)
 
         }
 
@@ -368,11 +327,11 @@ const theSandwichGame = {
             this.createIngredients()
 
 
-            $('<img class="ingredients" src="photo/ham.png">').appendTo('#ham').attr('data-which-ingredient', this.ingredients[0].ingredient)
+            $('<img class="ingredients" src="photo/ham.png">').appendTo('#ham').attr('data-which-ingredient', this.ingredients[0].ingredient1)
             // this.badIngredient[this.randomImg].img.appendTo('#bad-ingredients')
-            $('<img class="ingredients" src="photo/mayo.png">').appendTo('#mayo').attr('data-which-ingredient', this.ingredients[1].ingredient)
+            $('<img class="ingredients" src="photo/mayo.png">').appendTo('#mayo').attr('data-which-ingredient', this.ingredients[0].ingredient2)
             // this.badIngredient[this.randomImg].img.appendTo('#bad-ingredients')
-            $('<img class="ingredients" src="photo/tomatolettuce.png">').appendTo('#lettucetomato').attr('data-which-ingredient', this.ingredients[2].ingredient)
+            $('<img class="ingredients" src="photo/tomatolettuce.png">').appendTo('#lettucetomato').attr('data-which-ingredient', this.ingredients[0].ingredient3)
 
 
         }
