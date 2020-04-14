@@ -38,14 +38,11 @@
 	font-weight: 900;
 }
 
-#user1-form{
-	display: flex;
-	align-content: center;
-	justify-content: center;
-	margin-left: 5px;
+#user-button {
+	
 }
 
-#user2-form {
+.user-form {
 	display: flex;
 	align-content: center;
 	justify-content: center;

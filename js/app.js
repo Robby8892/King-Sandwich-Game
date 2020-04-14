@@ -8,20 +8,22 @@ console.log("King Sandwich Game");
 
 
 class Sandwich {
-    constructor(name, bread) {
-
-        this.name = this.name
-        this.bread = false
+    constructor(name, bread=false) {
+<button id="user-button">Enter</button>
+        this.name = name
+        this.bread = bread
 
     }
 }
 
 
 class Recipe {
-    constructor(ingredient, click) {
+    constructor(ingredient1, ingredient2, ingredient3, click=false) {
 
-        this.ingredient = this.ingredient
-        this.click = false
+        this.ingredient1 = ingredient1
+        this.ingredient2 = ingredient2
+        this.ingredient3 = ingredient3
+        this.click = click
 
     }
     wasClicked() {
@@ -33,19 +35,19 @@ class Recipe {
 }
 
 class Badrecipe {
-    constructor(img, ingredient) {
+    constructor(img, ingredient=false) {
 
-        this.img = this.img
-        this.ingredient = false
+        this.img = img
+        this.ingredient = ingredient
     }
 }
 
 
 class Player {
-    constructor(name, hasName) {
+    constructor(name, hasName=false) {
 
-        this.name = this.name
-        this.hasName = false
+        this.name = name
+        this.hasName = hasName
 
     }
 
@@ -122,6 +124,7 @@ const theSandwichGame = {
             this.ingredients.push(bacon)
             this.ingredients.push(tomato)
             this.ingredients.push(lettuce)
+
         } else if (this.theSandwich.name === "pb&j&j") {
 
             this.theSandwich.bread = true
@@ -559,26 +562,32 @@ const theSandwichGame = {
 
     },
 
-    createPlayer1(user1Input, ) {
+    createPlayer(user1Input, user2Input) {
 
 
-        const player1 = new Player(name=user1Input.value, hasName=true)
-
-        this.playerNames.push(player1)
-
-        this.verifyTwoPlayers()
-
-    },
-
-    createPlayer2(user2Input) {
-
+        const player1 = new Player(name=user1Input, hasName=true)
         const player2 = new Player(name=user2Input, hasName=true)
 
+
+        console.log(player1, 'this is player1');
+        console.log(player2, 'this is player2');
+
+        this.playerNames.push(player1)
         this.playerNames.push(player2)
 
         this.verifyTwoPlayers()
 
     },
+
+    // createPlayer2(user2Input) {
+
+    //     const player2 = new Player(name=user2Input, hasName=true)
+
+    //     this.playerNames.push(player2)
+
+    //     this.verifyTwoPlayers()
+
+    // },
 
     checkPlayerRound() {
 
@@ -928,58 +937,75 @@ const theSandwichGame = {
 
 }
 
-$('#user1-form').on('submit', (e) => {
+// $('#user1-form').on('submit', (e) => {
 
+
+//     e.preventDefault()
+
+//     const input = $('#user1-input')
+
+//     const user1Input = input[0]
+
+//     console.log(user1Input.value);
+
+//     theSandwichGame.createPlayer1(user1Input)
+
+// })
+
+
+// $('#user2-form').on('submit', (e) => {
+//     console.log('hello, on from2')
+//     e.preventDefault()
+
+//     const input = $('#user2-input')
+
+//     const user2Input = input[0]
+
+//     console.log(user2Input.value);
+
+//     theSandwichGame.createPlayer2(user2Input)
+
+// })
+
+
+$('.user-form').on('submit', (e) => {
     e.preventDefault()
-
-    const input = $('#user1-input')
-
-    const user1Input = input[0]
-
-    console.log(user1Input.value);
-
-    theSandwichGame.createPlayer1(user1Input)
-
+    
+    const input1 = $('#user1-input')
+    const input2 = $('#user2-input')
+    
+    const user1Input = input1[0].value
+    const user2Input = input2[0].value
+    
+    if(!user2Input) {
+        console.log('waiting for user 2 input');
+    } else {
+        theSandwichGame.createPlayer(user1Input, user2Input)
+        
+    }
 })
 
-
-$('#user2-form').on('submit', (e) => {
-
-    e.preventDefault()
-
-    const input = $('#user2-input')
-
-    const user2Input = input[0]
-
-    console.log(user2Input.value);
-
-    theSandwichGame.createPlayer2(user2Input)
-
-})
+// $('#ingredients-container').on('click', (e) => {
 
 
+//     const $userInput = $(e.target)
 
-$('#ingredients-container').on('click', (e) => {
-
-
-    const $userInput = $(e.target)
-
-    theSandwichGame.playerRound($userInput)
+//     theSandwichGame.playerRound($userInput)
 
 
 
 
-})
+// })
 
-$('body').on('keypress', (e) => {
+// $('body').on('keypress', (e) => {
 
-	const $userInput = $(e.keyCode)
+// 	const $userInput = $(e.keyCode)
 
-	console.log($userInput);
+// 	console.log($userInput);
 
-	theSandwichGame.movementOfKing($userInput)
+// 	theSandwichGame.movementOfKing($userInput)
 
-})
+// })
 
 
 
