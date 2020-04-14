@@ -39,7 +39,7 @@
 }
 
 #user-button {
-	
+
 }
 
 .user-form {
@@ -83,7 +83,7 @@
 }
 
 
-.user1-input .user1-button .user2-input .user2-button {
+.user-input, .user-button {
 	height: 15px;
 	margin-left: 5px;
 	margin: .2em;
@@ -155,12 +155,15 @@ footer{
 
 @keyframes bounce {
 	from { 
-		height: 100px
-
+		margin-left: 100px;
+		height: 70px;
+		width: 20%;
 	}
 
 	to {
-		height: 60px;
+		margin-right: 100px;
+		height: 30px;
+		width: 70%;
 	}
 
 }

@@ -68,7 +68,7 @@ const theSandwichGame = {
     typeOfIngredients: [],
     correct: false,
     name: null,
-    timer: 30,
+    timer: 30000000,
     round: 0,
     player1Score: 0,
     player2Score: 0,
