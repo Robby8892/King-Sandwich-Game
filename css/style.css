@@ -103,7 +103,11 @@
 	height: 100px;
 	margin-top: 200px;
 	margin-left: 10px;
-	animation: .5s linear 1s infinite alternate bounce;
+	animation: 1.5s ease-in 1s infinite reverse slidein;
+}
+
+#ingredients-container {
+	animation: 1s ease-in 1s infinite alternate bounce;	
 }
 
 .badIngredient {
@@ -153,19 +157,25 @@ footer{
 }
 
 
-@keyframes bounce {
+@keyframes slidein {
 	from { 
-		margin-left: 100px;
-		height: 70px;
-		width: 20%;
+		margin-left: 1000px;
 	}
 
 	to {
 		margin-right: 100px;
-		height: 30px;
-		width: 70%;
 	}
 
+}
+
+@keyframes bounce {
+	from {
+		margin-top: 100px;
+	}
+
+	to {
+		margin-bottom: 10px;
+	}
 }
 
 .sandwich {
