@@ -153,7 +153,7 @@ footer{
 	justify-content: center;
 }
 
-
+/*
 @keyframes slidein {
 	from { 
 		margin-left: 1000px;
@@ -173,7 +173,7 @@ footer{
 	to {
 		margin-bottom: 10px;
 	}
-}
+}*/
 
 .sandwich {
 	height: 20px;

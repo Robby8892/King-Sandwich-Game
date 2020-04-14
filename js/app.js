@@ -7,26 +7,24 @@ console.log("King Sandwich Game");
 
 
 
-class Sandwich {
-    constructor(name, bread=false) {
+class Sandwich { constructor(name, bread=false) {
         this.name = name
         this.bread = bread
 
     }
 }
 
+class Ingredient {constructor(click=false, name){this.click = click, this.name = name}}
 
 class Recipe {
-    constructor(ingredient1, ingredient2, ingredient3, click=false) {
+    constructor(ingredient1, ingredient2, ingredient3) {
+        this.ingredient1 = new Ingredient(false, ingredient1)
+        this.ingredient2 = new Ingredient(false, ingredient2)
+        this.ingredient3 = new Ingredient(false, ingredient3)
 
-        this.ingredient1 = ingredient1
-        this.ingredient2 = ingredient2
-        this.ingredient3 = ingredient3
-        this.click = click
 
     }
     wasClicked() {
-
         this.click = true
 
     }
@@ -65,7 +63,6 @@ const theSandwichGame = {
     typeOfSandwich: ['blt', 'pb&j&j', 'reuben', 'turkeyclub'],
     theSandwich: null,
     ingredients: [],
-    typeOfIngredients: [],
     correct: false,
     name: null,
     timer: 30000000,
@@ -92,11 +89,9 @@ const theSandwichGame = {
 
         this.theSandwich.name = this.typeOfSandwich[randomSandwich]
 
-
-
         this.theIngredients()
 
-        const list = this.typeOfIngredients.ingredient1 + " " + this.typeOfIngredients.ingredient2 + " " + this.typeOfIngredients.ingredient3
+        const list = this.ingredients.ingredient1 + " " + this.ingredients.ingredient2 + " " + this.ingredients.ingredient3
 
 
 
@@ -106,43 +101,28 @@ const theSandwichGame = {
         if (this.theSandwich.name === 'blt') {
 
             this.theSandwich.bread = true
-            this.typeOfIngredients.ingredient1 = 'bacon'
-            this.typeOfIngredients.ingredient2 = 'lettuce'
-            this.typeOfIngredients.ingredient3 = 'tomato'
-
             const blt = new Recipe('bacon','lettuce','tomato')
-            this.ingredients.push(blt)
+            this.ingredients = blt
+            console.log(blt);
             
 
         } else if (this.theSandwich.name === 'pb&j&j') {
 
             this.theSandwich.bread = true
-            this.typeOfIngredients.ingredient1 = 'peanutbutter'
-            this.typeOfIngredients.ingredient2 = 'jelly'
-            this.typeOfIngredients.ingredient3 = 'jam'
-
             const pbjj = new Recipe('peanutbutter','jelly','jam')
-            this.ingredients.push(pbjj)
+            this.ingredients = pbjj
 
         } else if (this.theSandwich.name === "reuben") {
 
             this.theSandwich.bread = true
-            this.typeOfIngredients.ingredient1 = 'cornedbeef'
-            this.typeOfIngredients.ingredient2 = 'swisscheese'
-            this.typeOfIngredients.ingredient3 = 'sauerkraut'
-
             const reuben = new Recipe('cornedbeef','swisscheese','sauerkraut')
-            this.ingredients.push(reuben)
+            this.ingredients = reuben
 
         } else if (this.theSandwich.name === 'turkeyclub') {
 
             this.theSandwich.bread = true
-            this.typeOfIngredients.ingredient1 = 'ham'
-            this.typeOfIngredients.ingredient2 = 'mayo'
-            this.typeOfIngredients.ingredient3 = 'lettucetomato'
-
             const turkeyClub = new Recipe('ham','mayo','lettucetomato')
-            this.ingredients.push(turkeyClub)
+            this.ingredients = turkeyClub 
 
         }
 
@@ -181,28 +161,21 @@ const theSandwichGame = {
     playerRound($userInput) {
 
         this.timerPoints = this.timer
-
+        
         const nameOfIngre = $userInput.data().whichIngredient
 
         console.log('click is here');
 
         console.log($userInput.data().whichIngredient);
 
-        for (let i = 0; i < this.ingredients.length; i++) {
-
-            if (nameOfIngre === this.ingredients[i].ingredient) {
-
-                $("<p class='messages'></p>").text("Good job that is a correct ingredient for a " + this.theSandwich.name).appendTo('h2').fadeOut(800)
-
-                $userInput.remove()
-
-                this.ingredients[i].click = true
-
-                this.verifyAllWereClicked($userInput)
-
-            }
-
+        if (nameOfIngre === this.ingredients.ingredient1.name || nameOfIngre === this.ingredients.ingredient2.name || nameOfIngre === this.ingredients.ingredient3.name) {
+            $("<p class='messages'></p>").text("Good job that is a correct ingredient for a " + this.theSandwich.name).appendTo('h2').fadeOut(800)
+            $userInput.remove()
+            this.ingredients.ingredient1.click = true 
+            this.verifyAllWereClicked($userInput)
         }
+
+
 
 
         if (this.correct === true) {
@@ -287,10 +260,10 @@ const theSandwichGame = {
             this.createIngredients()
 
             // this.badIngredient[this.randomImg].img.appendTo('#bad-ingredients')
-            $('<img class="ingredients" src="photo/bacon.png">').appendTo('#bacon').css('width', '40%').attr('data-which-ingredient', this.ingredients[0].ingredient1)
+            $('<img class="ingredients" src="photo/bacon.png">').appendTo('#bacon').css('width', '40%').attr('data-which-ingredient', this.ingredients.ingredient1.name)
             // this.badIngredient[this.randomImg].img.appendTo('#bad-ingredients')	
-            $('<img class="ingredients" src="photo/lettuce.png">').appendTo('#lettuce').attr('data-which-ingredient', this.ingredients[0].ingredient2)
-            $('<img class="ingredients" src="photo/tomato.png">').appendTo('#tomato').attr('data-which-ingredient', this.ingredients[0].ingredient3)
+            $('<img class="ingredients" src="photo/lettuce.png">').appendTo('#lettuce').attr('data-which-ingredient', this.ingredients.ingredient2.name)
+            $('<img class="ingredients" src="photo/tomato.png">').appendTo('#tomato').attr('data-which-ingredient', this.ingredients.ingredient3.name)
             // this.badIngredient[this.randomImg].img.appendTo('#bad-ingredients')
 
         }
@@ -299,11 +272,11 @@ const theSandwichGame = {
 
             this.createIngredients()
 
-            $('<img class="ingredients" src="photo/peanutbutter.png">').appendTo('#peanutbutter').attr('data-which-ingredient', this.ingredients[0].ingredient1)
+            $('<img class="ingredients" src="photo/peanutbutter.png">').appendTo('#peanutbutter').attr('data-which-ingredient', this.ingredients.ingredient1.name)
             // this.badIngredient[this.randomImg].img.appendTo('#bad-ingredients')
-            $('<img class="ingredients" src="photo/jam.png">').appendTo('#jelly').attr('data-which-ingredient', this.ingredients[0].ingredient2)
+            $('<img class="ingredients" src="photo/jam.png">').appendTo('#jelly').attr('data-which-ingredient', this.ingredients.ingredient2.name)
             // this.badIngredient[this.randomImg].img.appendTo('#bad-ingredients')
-            $('<img class="ingredients" src="photo/jam2.png">').appendTo('#jam').attr('data-which-ingredient', this.ingredients[0].ingredient3)
+            $('<img class="ingredients" src="photo/jam2.png">').appendTo('#jam').attr('data-which-ingredient', this.ingredients.ingredient3.name)
             // this.badIngredient[this.randomImg].img.appendTo('#bad-ingredients')
 
 
@@ -314,11 +287,11 @@ const theSandwichGame = {
             this.createIngredients()
 
 
-            $('<img class="ingredients" src="photo/cornedbeef.png">').appendTo('#cornedbeef').attr('data-which-ingredient', this.ingredients[0].ingredient1)
-            $('<img class="ingredients" src="photo/swisscheese.png">').appendTo('#swisscheese').attr('data-which-ingredient', this.ingredients[0].ingredient2)
+            $('<img class="ingredients" src="photo/cornedbeef.png">').appendTo('#cornedbeef').attr('data-which-ingredient', this.ingredients.ingredient1.name)
+            $('<img class="ingredients" src="photo/swisscheese.png">').appendTo('#swisscheese').attr('data-which-ingredient', this.ingredients.ingredient2.name)
             // this.badIngredient[this.randomImg].img.appendTo('#bad-ingredients')
             // this.badIngredient[this.randomImg].img.appendTo('#bad-ingredients')
-            $('<img class="ingredients" src="photo/sauerkraut.png">').appendTo('#sauerkraut').attr('data-which-ingredient', this.ingredients[0].ingredient3)
+            $('<img class="ingredients" src="photo/sauerkraut.png">').appendTo('#sauerkraut').attr('data-which-ingredient', this.ingredients.ingredient3.name)
 
         }
 
@@ -327,11 +300,11 @@ const theSandwichGame = {
             this.createIngredients()
 
 
-            $('<img class="ingredients" src="photo/ham.png">').appendTo('#ham').attr('data-which-ingredient', this.ingredients[0].ingredient1)
+            $('<img class="ingredients" src="photo/ham.png">').appendTo('#ham').attr('data-which-ingredient', this.ingredients.ingredient1.name)
             // this.badIngredient[this.randomImg].img.appendTo('#bad-ingredients')
-            $('<img class="ingredients" src="photo/mayo.png">').appendTo('#mayo').attr('data-which-ingredient', this.ingredients[0].ingredient2)
+            $('<img class="ingredients" src="photo/mayo.png">').appendTo('#mayo').attr('data-which-ingredient', this.ingredients.ingredient2.name)
             // this.badIngredient[this.randomImg].img.appendTo('#bad-ingredients')
-            $('<img class="ingredients" src="photo/tomatolettuce.png">').appendTo('#lettucetomato').attr('data-which-ingredient', this.ingredients[0].ingredient3)
+            $('<img class="ingredients" src="photo/tomatolettuce.png">').appendTo('#lettucetomato').attr('data-which-ingredient', this.ingredients.ingredient3.name)
 
 
         }
@@ -342,9 +315,9 @@ const theSandwichGame = {
 
         // this.createBadIngredients()
 
-        $('<div><div>').attr('id', this.typeOfIngredients.ingredient1).appendTo('#ingredients-container')
-        $('<div><div>').attr('id', this.typeOfIngredients.ingredient2).appendTo('#ingredients-container')
-        $('<div><div>').attr('id', this.typeOfIngredients.ingredient3).appendTo('#ingredients-container')
+        $('<div><div>').attr('id', this.ingredients.ingredient1).appendTo('#ingredients-container')
+        $('<div><div>').attr('id', this.ingredients.ingredient2).appendTo('#ingredients-container')
+        $('<div><div>').attr('id', this.ingredients.ingredient3).appendTo('#ingredients-container')
 
     // },
 
@@ -394,8 +367,8 @@ const theSandwichGame = {
     verifyAllWereClicked() {
 
 
-        if (this.ingredients[0].click === true && this.ingredients[1].click === true && this.ingredients[2].click === true) {
-
+        if (this.ingredients.ingredient1.click === true && this.ingredients.ingredient2.click === true && this.ingredients.ingredient3.click === true) {
+            console.log('made it here to correct');
             this.correct = true
 
         }
@@ -583,9 +556,6 @@ const theSandwichGame = {
         this.printStats()
         this.resetRound()
         this.newRound()
-
-
-
     },
 
     bonusRound() {
@@ -667,96 +637,64 @@ const theSandwichGame = {
     		console.log($('#sandwich').position().left);
     		console.log($('#sandwich').offset().left)	
     		this.checkPostion()
-
     	}
     },
 
     createMultipleSandwiches() {
-
     	const $gameBoard = $('.bonus-game')
-
     	const ranNum = Math.floor(Math.random() * 8)
-
-    	console.log($gameBoard[0]);
-
+    	// console.log($gameBoard[0]);
 		($gameBoard[ranNum]).append(this.bonusRoundSandwich[0])
-    
     },
 
     createGameBoard() {
-
     	for(let i = 0; i < 8; i++) {
     		$('<div class="bonus-game"></div>').appendTo('#the-game-container').attr('id', i)
     	}
-
     	this.createMultipleSandwiches()
-
     },
 
     tallyBounsRound() {
 
     	if(this.playerTurn === this.playerNames[0].name) {
-
     		this.player1Score += this.bonusScore
     		this.printStats()
-    		
     	}
     	
     	if(this.playerTurn === this.playerNames[1].name) {
-
     		this.player2Score += this.bonusScore
-    		this.printStats()
-    		
+    		this.printStats()		
     	}
-
-
     },
 
-
     returnToGame() {
-
     	this.resetRound()
     	this.clearBonusRound()
     	this.newRound()
-
-
-
-
     },
 
     checkPostion() {
-
-
     	if(this.kingPosition.left === 5 && $('#0').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 235 && $('#0').children()[0] === this.bonusRoundSandwich[0]) {
-
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
     		this.bonusScore += 10
-
     	}
 
     	if(this.kingPosition.left === 105 && $('#1').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 385 && $('#1').children()[0] === this.bonusRoundSandwich[0]) {
-
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
     		this.bonusScore += 10
-
     	}
-
     	if(this.kingPosition.left === 255 && $('#2').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 485 && $('#2').children()[0] === this.bonusRoundSandwich[0]) {
-
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
     		this.bonusScore += 10
-
     	}
 
     	if(this.kingPosition.left === 355 && $('#3').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 585 && $('#3').children()[0] === this.bonusRoundSandwich[0]) {
-
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
     		this.bonusScore += 10
-
     	}
 
     	if(this.kingPosition.left === 455 && $('#4').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 685 && $('#4').children()[0] === this.bonusRoundSandwich[0]) {
@@ -764,33 +702,24 @@ const theSandwichGame = {
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
     		this.bonusScore += 10
-
     	}
-
     	if(this.kingPosition.left === 555 && $('#5').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 785 && $('#5').children()[0] === this.bonusRoundSandwich[0]) {
-
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
     		this.bonusScore += 10
-
     	}
 
     	if(this.kingPosition.left === 655 && $('#6').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 885 && $('#6').children()[0] === this.bonusRoundSandwich[0]) {
-
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
     		this.bonusScore += 10
-
     	}
 
     	if(this.kingPosition.left === 755 && $('#7').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 985 && $('#7').children()[0] === this.bonusRoundSandwich[0]) {
-
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
     		this.bonusScore += 10
-
     	}
-
     },
 
     setIntervalBonusRound() {
@@ -798,8 +727,6 @@ const theSandwichGame = {
     	this.timer = 60
 
     	this.interval = setInterval(() => {
-
-            
             this.printStats()
             this.timer--
 
@@ -810,34 +737,26 @@ const theSandwichGame = {
             	this.tallyBounsRound()
             	this.clearTheInterval()
          		this.returnToGame()
-
             }
 
         }, 400)
-
-
-
     },
-
 
     tallyTimerP1() {
 
 
 
         if (this.timerPoints < 30 && this.timerPoints > 25) {
-
             this.player1Score += 3
 
         }
 
         if (this.timerPoints < 25 && this.timerPoints > 15) {
-
             this.player1Score += 2
 
         }
 
         if (this.timerPoints < 15 && this.timerPoints > 0) {
-
             this.player1Score += 1
         }
 
@@ -849,19 +768,16 @@ const theSandwichGame = {
 
 
         if (this.timerPoints < 30 && this.timerPoints > 25) {
-
             this.player2Score += 3
 
         }
 
         if (this.timerPoints < 25 && this.timerPoints > 15) {
-
             this.player2Score += 2
 
         }
 
         if (this.timerPoints < 15 && this.timerPoints > 0) {
-
             this.player2Score += 1
         }
 
@@ -888,11 +804,11 @@ const theSandwichGame = {
 $('.user-form').on('submit', (e) => {
     e.preventDefault()
     
-    const input1 = $('#user1-input')
-    const input2 = $('#user2-input')
+    const $input1 = $('#user1-input')
+    const $input2 = $('#user2-input')
     
-    const user1Input = input1[0].value
-    const user2Input = input2[0].value
+    const user1Input = $input1[0].value
+    const user2Input = $input2[0].value
     
     if(!user2Input) {
         console.log('waiting for user 2 input');
@@ -903,30 +819,17 @@ $('.user-form').on('submit', (e) => {
 })
 
 $('#ingredients-container').on('click', (e) => {
-
-
     const $userInput = $(e.target)
-
     theSandwichGame.playerRound($userInput)
-
-
-
 
 })
 
 $('body').on('keypress', (e) => {
 
 	const $userInput = $(e.keyCode)
-
-	console.log($userInput);
-
 	theSandwichGame.movementOfKing($userInput)
 
 })
-
-
-
-
 
 
 // here my event listener will live that needs to be checking for user input to start the game
