@@ -60,7 +60,8 @@ class Player {
 
 
 const theSandwichGame = {
-    typeOfSandwich: ['blt', 'pb&j&j', 'reuben', 'turkeyclub'],
+    // typeOfSandwich: ['blt', 'pb&j&j', 'reuben', 'turkeyclub']
+    typeOfSandwich: ['blt'],
     theSandwich: null,
     ingredients: [],
     correct: false,
@@ -93,17 +94,14 @@ const theSandwichGame = {
 
         const list = this.ingredients.ingredient1 + " " + this.ingredients.ingredient2 + " " + this.ingredients.ingredient3
 
-
-
     },
     theIngredients() {
 
         if (this.theSandwich.name === 'blt') {
-
+            
             this.theSandwich.bread = true
             const blt = new Recipe('bacon','lettuce','tomato')
             this.ingredients = blt
-            console.log(blt);
             
 
         } else if (this.theSandwich.name === 'pb&j&j') {
@@ -167,15 +165,26 @@ const theSandwichGame = {
         console.log('click is here');
 
         console.log($userInput.data().whichIngredient);
-
-        if (nameOfIngre === this.ingredients.ingredient1.name || nameOfIngre === this.ingredients.ingredient2.name || nameOfIngre === this.ingredients.ingredient3.name) {
+        if (nameOfIngre === this.ingredients.ingredient1.name) {
             $("<p class='messages'></p>").text("Good job that is a correct ingredient for a " + this.theSandwich.name).appendTo('h2').fadeOut(800)
             $userInput.remove()
             this.ingredients.ingredient1.click = true 
             this.verifyAllWereClicked($userInput)
         }
 
+        else if(nameOfIngre === this.ingredients.ingredient2.name) {
+            $("<p class='messages'></p>").text("Good job that is a correct ingredient for a " + this.theSandwich.name).appendTo('h2').fadeOut(800)
+            $userInput.remove()
+            this.ingredients.ingredient2.click = true 
+            this.verifyAllWereClicked($userInput)
+        }
 
+        else if(nameOfIngre === this.ingredients.ingredient3.name) {
+            $("<p class='messages'></p>").text("Good job that is a correct ingredient for a " + this.theSandwich.name).appendTo('h2').fadeOut(800)
+            $userInput.remove()
+            this.ingredients.ingredient3.click = true 
+            this.verifyAllWereClicked($userInput)
+        }
 
 
         if (this.correct === true) {
@@ -192,9 +201,6 @@ const theSandwichGame = {
             this.resetRound()
             this.bonusRound()
             
-
-
-
         }
 
     },
@@ -315,9 +321,9 @@ const theSandwichGame = {
 
         // this.createBadIngredients()
 
-        $('<div><div>').attr('id', this.ingredients.ingredient1).appendTo('#ingredients-container')
-        $('<div><div>').attr('id', this.ingredients.ingredient2).appendTo('#ingredients-container')
-        $('<div><div>').attr('id', this.ingredients.ingredient3).appendTo('#ingredients-container')
+        $('<div><div>').attr('id', this.ingredients.ingredient1.name).appendTo('#ingredients-container')
+        $('<div><div>').attr('id', this.ingredients.ingredient2.name).appendTo('#ingredients-container')
+        $('<div><div>').attr('id', this.ingredients.ingredient3.name).appendTo('#ingredients-container')
 
     // },
 
@@ -443,7 +449,7 @@ const theSandwichGame = {
         this.correct = false
         this.timer = 30
         this.bonusScore = 0
-        this.ingredients.splice(0, 3)
+        this.ingredients = ''
 
         for (let i = 0; i < this.ingredients.length; i++) {
             this.ingredients[i].click = false
@@ -552,7 +558,7 @@ const theSandwichGame = {
         $('.player').remove()
         this.clearTheInterval()
         this.round++
-        this.timer = 30
+        this.timer = 30000000000
         this.printStats()
         this.resetRound()
         this.newRound()
@@ -643,8 +649,8 @@ const theSandwichGame = {
     createMultipleSandwiches() {
     	const $gameBoard = $('.bonus-game')
     	const ranNum = Math.floor(Math.random() * 8)
-    	// console.log($gameBoard[0]);
-		($gameBoard[ranNum]).append(this.bonusRoundSandwich[0])
+    	
+		$gameBoard[ranNum].append(this.bonusRoundSandwich[0])
     },
 
     createGameBoard() {
@@ -724,7 +730,7 @@ const theSandwichGame = {
 
     setIntervalBonusRound() {
 
-    	this.timer = 60
+    	this.timer = 60000000
 
     	this.interval = setInterval(() => {
             this.printStats()
