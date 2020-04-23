@@ -80,6 +80,7 @@ const theSandwichGame = {
     bonusScore: 0,
     theKing: [],
     kingPosition: [],
+    sandwichPosition: 0,
     bonusRoundSandwich: [],
 
     generateSandwich() {
@@ -130,7 +131,7 @@ const theSandwichGame = {
 
 
         $('html').css({
-            'background-image': 'url(https://cdna.artstation.com/p/assets/images/images/007/419/268/large/connor-wakes-conwak-sotn.jpg?1506008314)',
+            'background-image': 'url(./photo/throneRoom.png)',
             "background-size": "100%"
         })
 
@@ -162,9 +163,6 @@ const theSandwichGame = {
         
         const nameOfIngre = $userInput.data().whichIngredient
 
-        console.log('click is here');
-
-        console.log($userInput.data().whichIngredient);
         if (nameOfIngre === this.ingredients.ingredient1.name) {
             $("<p class='messages'></p>").text("Good job that is a correct ingredient for a " + this.theSandwich.name).appendTo('h2').fadeOut(800)
             $userInput.remove()
@@ -212,8 +210,6 @@ const theSandwichGame = {
 
         	const pbj = $('<img class="sandwich" src= "photo/pbjj.png">')
 
-        	console.log(pbj);
-
         	this.bonusRoundSandwich.push(pbj[0])
 
         	console.log(this.bonusRoundSandwich);
@@ -223,8 +219,7 @@ const theSandwichGame = {
 
            	const blt = $('<img class="sandwich" src= "photo/blt.png">')
 
-           	console.log(blt);
-
+           
            	this.bonusRoundSandwich.push(blt[0])
 
            	console.log(this.bonusRoundSandwich);
@@ -235,8 +230,6 @@ const theSandwichGame = {
 
             const reuben = $('<img class="sandwich" src= "photo/reuben.png">')
 
-            console.log(reuben);
-
             this.bonusRoundSandwich.push(reuben[0]) 
 
             console.log(this.bonusRoundSandwich);
@@ -245,8 +238,6 @@ const theSandwichGame = {
         if (this.theSandwich.name === 'turkeyclub') {
 
             const turkeyClub = $('<img class="sandwich" src= "photo/turkeyclub.png">')
-
-            console.log(turkeyClub);
 
             this.bonusRoundSandwich.push(turkeyClub[0])
 
@@ -325,56 +316,12 @@ const theSandwichGame = {
         $('<div><div>').attr('id', this.ingredients.ingredient2.name).appendTo('#ingredients-container')
         $('<div><div>').attr('id', this.ingredients.ingredient3.name).appendTo('#ingredients-container')
 
-    // },
-
-
-
-    // printBadIngredients() {
-
-    //     $('<div><div>').attr('id', this.badIngredient[this.randomImg].img).appendTo('#bad-ingredients')
-    //     $('<div><div>').attr('id', this.badIngredient[this.randomImg].img).appendTo('#bad-ingredients')
-    //     $('<div><div>').attr('id', this.badIngredient[this.randomImg].img).appendTo('#bad-ingredients')
-
-
-    // },
-
-
-    // createBadIngredients() {
-
-    	// this will be used to created bad ingredients 
-
-    //     const badIngredient1 = new Badrecipe()
-    //     const badIngredient2 = new Badrecipe()
-    //     const badIngredient3 = new Badrecipe()
-    //     const badIngredient4 = new Badrecipe()
-    //     const badIngredient5 = new Badrecipe()
-    //     const badIngredient6 = new Badrecipe()
-
-    //     this.badIngredient.push(badIngredient1)
-    //     this.badIngredient.push(badIngredient2)
-    //     this.badIngredient.push(badIngredient3)
-    //     this.badIngredient.push(badIngredient4)
-    //     this.badIngredient.push(badIngredient5)
-    //     this.badIngredient.push(badIngredient6)
-
-    //     this.badIngredient[0].img = $('<img class="ingredients" src="photo/shoe.png">')
-    //     this.badIngredient[1].img = $('<img class="ingredients" src="photo/moldycheese.png">')
-    //     this.badIngredient[2].img = $('<img class="ingredients" src="photo/peanut.png">')
-    //     this.badIngredient[3].img = $('<img class="ingredients" src="photo/oldbacon.png">')
-    //     this.badIngredient[4].img = $('<img class="ingredients" src="photo/tortilla.png">')
-    //     this.badIngredient[5].img = $('<img class="ingredients" src="photo/nutella.png">')
-
-
-    //     this.randomImg = Math.floor(Math.random() * this.badIngredient.length)
-
-
     },
 
     verifyAllWereClicked() {
 
 
         if (this.ingredients.ingredient1.click === true && this.ingredients.ingredient2.click === true && this.ingredients.ingredient3.click === true) {
-            console.log('made it here to correct');
             this.correct = true
 
         }
@@ -504,10 +451,6 @@ const theSandwichGame = {
         const player1 = new Player(name=user1Input, hasName=true)
         const player2 = new Player(name=user2Input, hasName=true)
 
-
-        console.log(player1, 'this is player1');
-        console.log(player2, 'this is player2');
-
         this.playerNames.push(player1)
         this.playerNames.push(player2)
 
@@ -567,7 +510,7 @@ const theSandwichGame = {
     bonusRound() {
 
     	$('html').css({
-        	'background-image': 'url(https://cdn.wallpapersafari.com/79/31/KOoJ2e.png)',
+        	'background-image': 'url(./photo/bouns-round-background.png)',
             "background-size": "100%"
         })
 
@@ -597,10 +540,14 @@ const theSandwichGame = {
     	if($userInput[0] === 119) {
 
     		// console.log('You got it');
+            const testElm = document.elementFromPoint(10,10)
+            console.log('Here is my testElm', testElm);
     		$('#king-char').css('margin-top', '-=50px')
-    		console.log(this.kingPosition.left);
+            console.log(this.kingPosition, 'here is theKing position class');
+    		// console.log(this.kingPosition.left);
     		this.kingPosition = $('#king-char').offset()
-    		console.log($('#sandwich').offset().left)
+            console.log(this.sandwichPosition, 'sandwich position');
+    		// console.log($('#sandwich').offset().left)
 
     		this.checkPostion()
 
@@ -608,13 +555,15 @@ const theSandwichGame = {
 
     	if($userInput[0] === 100 ) {
 
-    		$('#king-char').css({'margin-left': '+=50px',
+    		$('#king-char').css({'margin-left': '+=50px', 
     			'margin-right': '-=50px',
     			'transform': 'scaleX(1)'	})
 
     		this.kingPosition = $('#king-char').offset()
-    		console.log(this.kingPosition.left);
-    		console.log($('#sandwich').offset().left)
+            console.log(this.kingPosition, 'here is theKing position class');
+            console.log(this.sandwichPosition, 'sandwich position');
+    		// console.log(this.kingPosition.left);
+    		// console.log($('#sandwich').offset().left)
     		this.checkPostion()
 
     	}
@@ -626,9 +575,12 @@ const theSandwichGame = {
 				'transform': 'scaleX(-1)'	})
 
     		this.kingPosition = $('#king-char').offset()
-    		console.log(this.kingPosition.left);
-    		console.log($('#sandwich').position().left);	
-    		console.log($('#sandwich').offset().left)
+            console.log(this.kingPosition, 'here is theKing position class before');
+            this.king.position(100,200)
+            console.log(this.kingPosition, 'here is theKing position class after');
+    		// console.log(this.kingPosition.left);
+    		console.log(this.sandwichPosition, 'sandwich position');
+    		// console.log($('#sandwich').offset().left)
     		this.checkPostion()
 
 
@@ -639,9 +591,10 @@ const theSandwichGame = {
     		$('#king-char').css('margin-top', '+=50px')
 
     		this.kingPosition = $('#king-char').offset()
-    		console.log(this.kingPosition.left);
-    		console.log($('#sandwich').position().left);
-    		console.log($('#sandwich').offset().left)	
+            console.log(this.kingPosition, 'here is theKing position class');
+    		// console.log(this.kingPosition.left);
+    		console.log(this.sandwichPosition, 'sandwich position');
+    		// console.log($('#sandwich').offset().left)	
     		this.checkPostion()
     	}
     },
@@ -649,8 +602,8 @@ const theSandwichGame = {
     createMultipleSandwiches() {
     	const $gameBoard = $('.bonus-game')
     	const ranNum = Math.floor(Math.random() * 8)
-    	
 		$gameBoard[ranNum].append(this.bonusRoundSandwich[0])
+        this.sandwichPosition = $('#sandwich').position()
     },
 
     createGameBoard() {
@@ -683,23 +636,27 @@ const theSandwichGame = {
     	if(this.kingPosition.left === 5 && $('#0').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 235 && $('#0').children()[0] === this.bonusRoundSandwich[0]) {
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
+            this.sandwichPosition = $('#sandwich').position()
     		this.bonusScore += 10
     	}
 
     	if(this.kingPosition.left === 105 && $('#1').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 385 && $('#1').children()[0] === this.bonusRoundSandwich[0]) {
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
+            this.sandwichPosition = $('#sandwich').position()
     		this.bonusScore += 10
     	}
     	if(this.kingPosition.left === 255 && $('#2').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 485 && $('#2').children()[0] === this.bonusRoundSandwich[0]) {
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
+            this.sandwichPosition = $('#sandwich').position()
     		this.bonusScore += 10
     	}
 
     	if(this.kingPosition.left === 355 && $('#3').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 585 && $('#3').children()[0] === this.bonusRoundSandwich[0]) {
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
+            this.sandwichPosition = $('#sandwich').position()
     		this.bonusScore += 10
     	}
 
@@ -707,23 +664,27 @@ const theSandwichGame = {
 
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
+            this.sandwichPosition = $('#sandwich').position()
     		this.bonusScore += 10
     	}
     	if(this.kingPosition.left === 555 && $('#5').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 785 && $('#5').children()[0] === this.bonusRoundSandwich[0]) {
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
+            this.sandwichPosition = $('#sandwich').position()
     		this.bonusScore += 10
     	}
 
     	if(this.kingPosition.left === 655 && $('#6').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 885 && $('#6').children()[0] === this.bonusRoundSandwich[0]) {
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
+            this.sandwichPosition = $('#sandwich').position()
     		this.bonusScore += 10
     	}
 
     	if(this.kingPosition.left === 755 && $('#7').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 985 && $('#7').children()[0] === this.bonusRoundSandwich[0]) {
     		$('.sandwich').remove()
     		this.createMultipleSandwiches()
+            this.sandwichPosition = $('#sandwich').position()
     		this.bonusScore += 10
     	}
     },
@@ -798,7 +759,7 @@ const theSandwichGame = {
 
 
      	$('html').css({
-        	'background-image': 'url(https://cdna.artstation.com/p/assets/images/images/007/419/268/large/connor-wakes-conwak-sotn.jpg?1506008314)',
+        	'background-image': 'url(./photo/throneRoom.png)',
          	"background-size": "100%"
         	})
 
@@ -817,7 +778,7 @@ $('.user-form').on('submit', (e) => {
     const user2Input = $input2[0].value
     
     if(!user2Input) {
-        console.log('waiting for user 2 input');
+
     } else {
         theSandwichGame.createPlayer(user1Input, user2Input)
         

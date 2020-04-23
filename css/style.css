@@ -1,5 +1,5 @@
-	html{
-	background-image:  url(https://media.boingboing.net/wp-content/uploads/2019/09/68747470733a2f2f692e696d6775722e636f6d2f686e6661385a362e706e67.png);
+	html {
+	background-image:  url("../photo/king-sandwich-game-background.png");
 	background-size: 100%;
 }
 
@@ -136,6 +136,7 @@
 	display: flex;
 	align-content: center;
 	justify-content: center;
+	z-index: 1;
 
 }
 
@@ -152,6 +153,7 @@ footer{
 	align-content: center;
 	justify-content: center;
 }
+
 
 /*
 @keyframes slidein {
