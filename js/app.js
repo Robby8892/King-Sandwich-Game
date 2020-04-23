@@ -540,13 +540,16 @@ const theSandwichGame = {
     	if($userInput[0] === 119) {
 
     		// console.log('You got it');
-            const testElm = document.elementFromPoint(10,10)
-            console.log('Here is my testElm', testElm);
-    		$('#king-char').css('margin-top', '-=50px')
-            console.log(this.kingPosition, 'here is theKing position class');
+    		$('#king-char').css({'position': 'absolute',
+                'top': '-=50px'
+            })
+            console.log($('#king-char').position(), 'here is position for king')
+            console.log($('#king-char').position().top, 'here is position top for king')
+            console.log($('#king-char').position().left, 'here is position left for king')
+            // console.log(this.kingPosition, 'here is theKing position class');
     		// console.log(this.kingPosition.left);
     		this.kingPosition = $('#king-char').offset()
-            console.log(this.sandwichPosition, 'sandwich position');
+            // console.log(this.sandwichPosition, 'sandwich position');
     		// console.log($('#sandwich').offset().left)
 
     		this.checkPostion()
@@ -555,13 +558,13 @@ const theSandwichGame = {
 
     	if($userInput[0] === 100 ) {
 
-    		$('#king-char').css({'margin-left': '+=50px', 
-    			'margin-right': '-=50px',
+    		$('#king-char').css({'position': 'absolute', 
+    			'left': '+=50px',
     			'transform': 'scaleX(1)'	})
 
     		this.kingPosition = $('#king-char').offset()
-            console.log(this.kingPosition, 'here is theKing position class');
-            console.log(this.sandwichPosition, 'sandwich position');
+            // console.log(this.kingPosition, 'here is theKing position class');
+            // console.log(this.sandwichPosition, 'sandwich position');
     		// console.log(this.kingPosition.left);
     		// console.log($('#sandwich').offset().left)
     		this.checkPostion()
@@ -570,16 +573,16 @@ const theSandwichGame = {
 
     	if($userInput[0] === 97) {
 
-    		$('#king-char').css({'margin-right': '+=50px',
-    			'margin-left': '-=50px',
+    		$('#king-char').css({'position': 'absolute',
+    			'left': '-=50px',
 				'transform': 'scaleX(-1)'	})
 
     		this.kingPosition = $('#king-char').offset()
-            console.log(this.kingPosition, 'here is theKing position class before');
-            this.king.position(100,200)
-            console.log(this.kingPosition, 'here is theKing position class after');
+            // console.log(this.kingPosition, 'here is theKing position class before');
+            
+            // console.log(this.kingPosition, 'here is theKing position class after');
     		// console.log(this.kingPosition.left);
-    		console.log(this.sandwichPosition, 'sandwich position');
+    		// console.log(this.sandwichPosition, 'sandwich position');
     		// console.log($('#sandwich').offset().left)
     		this.checkPostion()
 
@@ -588,12 +591,14 @@ const theSandwichGame = {
 
     	if($userInput[0] === 115) {
 
-    		$('#king-char').css('margin-top', '+=50px')
+    		  $('#king-char').css({'position': 'absolute',
+                'top': '+=50px'
+            })
 
     		this.kingPosition = $('#king-char').offset()
-            console.log(this.kingPosition, 'here is theKing position class');
+            // console.log(this.kingPosition, 'here is theKing position class');
     		// console.log(this.kingPosition.left);
-    		console.log(this.sandwichPosition, 'sandwich position');
+    		// console.log(this.sandwichPosition, 'sandwich position');
     		// console.log($('#sandwich').offset().left)	
     		this.checkPostion()
     	}
