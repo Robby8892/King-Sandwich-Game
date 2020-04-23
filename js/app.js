@@ -79,8 +79,8 @@ const theSandwichGame = {
     timerPoints: 0,
     bonusScore: 0,
     theKing: [],
-    kingPosition: [],
-    sandwichPosition: 0,
+    kingPosition: {top: 0, left: 0},
+    sandwichPosition: {top: -1, left: -1},
     bonusRoundSandwich: [],
 
     generateSandwich() {
@@ -536,70 +536,52 @@ const theSandwichGame = {
 
     movementOfKing($userInput) {
 
-
+        // this direction will cause the king image to move up 
     	if($userInput[0] === 119) {
 
     		// console.log('You got it');
-    		$('#king-char').css({'position': 'absolute',
-                'top': '-=50px'
+    		$('#king-char').css({'position': 'relative',
+                'top': '-=10px'
             })
-            console.log($('#king-char').position(), 'here is position for king')
-            console.log($('#king-char').position().top, 'here is position top for king')
-            console.log($('#king-char').position().left, 'here is position left for king')
-            // console.log(this.kingPosition, 'here is theKing position class');
-    		// console.log(this.kingPosition.left);
-    		this.kingPosition = $('#king-char').offset()
-            // console.log(this.sandwichPosition, 'sandwich position');
-    		// console.log($('#sandwich').offset().left)
-
-    		this.checkPostion()
+    		this.kingPosition = $('#king-char').position()
+            this.sandwichPosition = $('.sandwich').position()
+       		this.checkPostion()
 
     	}
-
+        // this direction will cause the king image to move left 
     	if($userInput[0] === 100 ) {
 
-    		$('#king-char').css({'position': 'absolute', 
-    			'left': '+=50px',
+    		$('#king-char').css({'position': 'relative', 
+    			'left': '+=10px',
     			'transform': 'scaleX(1)'	})
 
-    		this.kingPosition = $('#king-char').offset()
-            // console.log(this.kingPosition, 'here is theKing position class');
-            // console.log(this.sandwichPosition, 'sandwich position');
-    		// console.log(this.kingPosition.left);
-    		// console.log($('#sandwich').offset().left)
+    		this.kingPosition = $('#king-char').position()
+            this.sandwichPosition = $('.sandwich').position()
     		this.checkPostion()
 
     	}
-
+        // this direction will cause the king image to move right 
     	if($userInput[0] === 97) {
 
-    		$('#king-char').css({'position': 'absolute',
-    			'left': '-=50px',
+    		$('#king-char').css({'position': 'relative',
+    			'left': '-=10px',
 				'transform': 'scaleX(-1)'	})
 
-    		this.kingPosition = $('#king-char').offset()
-            // console.log(this.kingPosition, 'here is theKing position class before');
-            
-            // console.log(this.kingPosition, 'here is theKing position class after');
-    		// console.log(this.kingPosition.left);
-    		// console.log(this.sandwichPosition, 'sandwich position');
-    		// console.log($('#sandwich').offset().left)
+    		this.kingPosition = $('#king-char').position()
+            this.sandwichPosition = $('.sandwich').position()
     		this.checkPostion()
 
 
     	}
-
+        // this direction will cause the king image to move down 
     	if($userInput[0] === 115) {
 
-    		  $('#king-char').css({'position': 'absolute',
-                'top': '+=50px'
+    		  $('#king-char').css({'position': 'relative',
+                'top': '+=10px'
             })
 
-    		this.kingPosition = $('#king-char').offset()
-            // console.log(this.kingPosition, 'here is theKing position class');
-    		// console.log(this.kingPosition.left);
-    		// console.log(this.sandwichPosition, 'sandwich position');
-    		// console.log($('#sandwich').offset().left)	
+            this.kingPosition = $('#king-char').position()
+            this.sandwichPosition = $('.sandwich').position()
     		this.checkPostion()
     	}
     },
@@ -608,7 +590,6 @@ const theSandwichGame = {
     	const $gameBoard = $('.bonus-game')
     	const ranNum = Math.floor(Math.random() * 8)
 		$gameBoard[ranNum].append(this.bonusRoundSandwich[0])
-        this.sandwichPosition = $('#sandwich').position()
     },
 
     createGameBoard() {
@@ -638,58 +619,10 @@ const theSandwichGame = {
     },
 
     checkPostion() {
-    	if(this.kingPosition.left === 5 && $('#0').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 235 && $('#0').children()[0] === this.bonusRoundSandwich[0]) {
+    	if(this.kingPosition.top == this.sandwichPosition.top && this.kingPosition.left == this.sandwichPosition.left) {
     		$('.sandwich').remove()
+            console.log('sandwich match');
     		this.createMultipleSandwiches()
-            this.sandwichPosition = $('#sandwich').position()
-    		this.bonusScore += 10
-    	}
-
-    	if(this.kingPosition.left === 105 && $('#1').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 385 && $('#1').children()[0] === this.bonusRoundSandwich[0]) {
-    		$('.sandwich').remove()
-    		this.createMultipleSandwiches()
-            this.sandwichPosition = $('#sandwich').position()
-    		this.bonusScore += 10
-    	}
-    	if(this.kingPosition.left === 255 && $('#2').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 485 && $('#2').children()[0] === this.bonusRoundSandwich[0]) {
-    		$('.sandwich').remove()
-    		this.createMultipleSandwiches()
-            this.sandwichPosition = $('#sandwich').position()
-    		this.bonusScore += 10
-    	}
-
-    	if(this.kingPosition.left === 355 && $('#3').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 585 && $('#3').children()[0] === this.bonusRoundSandwich[0]) {
-    		$('.sandwich').remove()
-    		this.createMultipleSandwiches()
-            this.sandwichPosition = $('#sandwich').position()
-    		this.bonusScore += 10
-    	}
-
-    	if(this.kingPosition.left === 455 && $('#4').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 685 && $('#4').children()[0] === this.bonusRoundSandwich[0]) {
-
-    		$('.sandwich').remove()
-    		this.createMultipleSandwiches()
-            this.sandwichPosition = $('#sandwich').position()
-    		this.bonusScore += 10
-    	}
-    	if(this.kingPosition.left === 555 && $('#5').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 785 && $('#5').children()[0] === this.bonusRoundSandwich[0]) {
-    		$('.sandwich').remove()
-    		this.createMultipleSandwiches()
-            this.sandwichPosition = $('#sandwich').position()
-    		this.bonusScore += 10
-    	}
-
-    	if(this.kingPosition.left === 655 && $('#6').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 885 && $('#6').children()[0] === this.bonusRoundSandwich[0]) {
-    		$('.sandwich').remove()
-    		this.createMultipleSandwiches()
-            this.sandwichPosition = $('#sandwich').position()
-    		this.bonusScore += 10
-    	}
-
-    	if(this.kingPosition.left === 755 && $('#7').children()[0] === this.bonusRoundSandwich[0] || this.kingPosition.left === 985 && $('#7').children()[0] === this.bonusRoundSandwich[0]) {
-    		$('.sandwich').remove()
-    		this.createMultipleSandwiches()
-            this.sandwichPosition = $('#sandwich').position()
     		this.bonusScore += 10
     	}
     },
