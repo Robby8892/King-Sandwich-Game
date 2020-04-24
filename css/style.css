@@ -136,7 +136,11 @@
 	display: flex;
 	align-content: center;
 	justify-content: center;
-	position: relative;
+}
+
+#king-char {
+	height: 50px;
+	width: 50px;
 }
 
 h1{
@@ -194,8 +198,7 @@ footer{
 .bonus-game {
 
 	display: inline-block;
-	width: 100px;
+	width: 50px;
 	/*I use this to determine placment of of the container*/
-    /*border: 10px solid red;*/
     align-content: center;
 }

@@ -80,6 +80,7 @@ const theSandwichGame = {
     bonusScore: 0,
     theKing: [],
     kingPosition: {top: 0, left: 0},
+    positionMatch: false,
     sandwichPosition: {top: -1, left: -1},
     bonusRoundSandwich: [],
 
@@ -524,13 +525,10 @@ const theSandwichGame = {
     },
 
     createKing() {
-
-
-    this.king = $('<img id="king-char" src="source-images/kingeating.png">')
-
-    console.log(this.king);
-
-    this.king.appendTo('#king')
+    
+        this.king = $('<img id="king-char" src="source-images/kingeating.png">')
+        this.king.appendTo('#king')
+        
 
     },
 
@@ -545,6 +543,12 @@ const theSandwichGame = {
             })
     		this.kingPosition = $('#king-char').position()
             this.sandwichPosition = $('.sandwich').position()
+            const findKingPos = this.findingPosition($('#king-char'))
+            const findSandwichPos = this.findingPosition($('.sandwich'))
+            console.log('here is findSandwichPos', findSandwichPos);
+            console.log('here is findKingPos', findKingPos);
+            this.positionMatch = this.comparePositions(findKingPos, findSandwichPos)
+            console.log('Here is posMatch', this.positionMatch);
        		this.checkPostion()
 
     	}
@@ -557,6 +561,12 @@ const theSandwichGame = {
 
     		this.kingPosition = $('#king-char').position()
             this.sandwichPosition = $('.sandwich').position()
+            const findKingPos = this.findingPosition($('#king-char'))
+            const findSandwichPos = this.findingPosition($('.sandwich'))
+            console.log('here is findSandwichPos', findSandwichPos);
+            console.log('here is findKingPos', findKingPos);
+            this.positionMatch = this.comparePositions(findKingPos, findSandwichPos)
+            console.log('Here is posMatch', this.positionMatch);
     		this.checkPostion()
 
     	}
@@ -569,6 +579,12 @@ const theSandwichGame = {
 
     		this.kingPosition = $('#king-char').position()
             this.sandwichPosition = $('.sandwich').position()
+            const findKingPos = this.findingPosition($('#king-char'))
+            const findSandwichPos = this.findingPosition($('.sandwich'))
+            console.log('here is findSandwichPos', findSandwichPos);
+            console.log('here is findKingPos', findKingPos);
+            this.positionMatch = this.comparePositions(findKingPos, findSandwichPos)
+            console.log('Here is posMatch', this.positionMatch);
     		this.checkPostion()
 
 
@@ -582,18 +598,38 @@ const theSandwichGame = {
 
             this.kingPosition = $('#king-char').position()
             this.sandwichPosition = $('.sandwich').position()
+            const findKingPos = this.findingPosition($('#king-char'))
+            const findSandwichPos = this.findingPosition($('.sandwich'))
+            console.log('here is findSandwichPos', findSandwichPos);
+            console.log('here is findKingPos', findKingPos);
+            this.positionMatch = this.comparePositions(findKingPos, findSandwichPos)
+            console.log('Here is posMatch', this.positionMatch);
     		this.checkPostion()
     	}
     },
 
+    findingPosition(elem){
+        let pos = $(elem).position()
+        let height = $(elem).height()
+        let width = $(elem).width()
+        return [[pos.left, pos.left + width], [pos.top, pos.top + height]]
+    },
+
+    comparePositions(king, sandwich){
+        console.log('here is king', king[0])
+        console.log('here is sandwich', sandwich[0]);;
+        console.log(king[0][1] == sandwich[0][1], 'true false ?');
+        return king[0][1] == sandwich[0][1]
+    },
+
     createMultipleSandwiches() {
     	const $gameBoard = $('.bonus-game')
-    	const ranNum = Math.floor(Math.random() * 8)
+    	const ranNum = Math.floor(Math.random() * 50)
 		$gameBoard[ranNum].append(this.bonusRoundSandwich[0])
     },
 
     createGameBoard() {
-    	for(let i = 0; i < 8; i++) {
+    	for(let i = 0; i < 50; i++) {
     		$('<div class="bonus-game"></div>').appendTo('#the-game-container').attr('id', i)
     	}
     	this.createMultipleSandwiches()
@@ -619,7 +655,7 @@ const theSandwichGame = {
     },
 
     checkPostion() {
-    	if(this.kingPosition.top == this.sandwichPosition.top && this.kingPosition.left == this.sandwichPosition.left) {
+    	if(this.positionMatch) {
     		$('.sandwich').remove()
             console.log('sandwich match');
     		this.createMultipleSandwiches()
